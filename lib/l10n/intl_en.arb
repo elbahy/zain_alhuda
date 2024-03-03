@@ -1,0 +1,8 @@
+{
+    "@@locale": "en",
+
+    "settings": "Settings",
+    "@settings": {} ,
+    "audios": "Audios",
+    "@audios": {}
+}
