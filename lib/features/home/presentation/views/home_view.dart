@@ -11,9 +11,7 @@ class HomeView extends StatelessWidget {
         title: Text(S.of(context).settings),
       ),
       body: ListView(
-        children: [
-          Text(S.of(context).settings),
-        ],
+        children: const [],
       ),
     );
   }
