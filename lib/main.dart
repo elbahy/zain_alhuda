@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zain_alhuda/core/router.dart';
+import 'package:zain_alhuda/core/routing/router.dart';
 import 'package:zain_alhuda/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -16,6 +16,9 @@ class ZainAlhuda extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       locale: const Locale('ar'),
+      theme: ThemeData.light().copyWith(
+          scaffoldBackgroundColor: const Color(0xfff8fefe),
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent)),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
