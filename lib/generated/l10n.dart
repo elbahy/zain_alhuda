@@ -69,6 +69,46 @@ class S {
       args: [],
     );
   }
+
+  /// `القرآن`
+  String get Quran {
+    return Intl.message(
+      'القرآن',
+      name: 'Quran',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الأذكار`
+  String get azkar {
+    return Intl.message(
+      'الأذكار',
+      name: 'azkar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مواعيد الصلاة`
+  String get prayertimes {
+    return Intl.message(
+      'مواعيد الصلاة',
+      name: 'prayertimes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الأدعية`
+  String get supplications {
+    return Intl.message(
+      'الأدعية',
+      name: 'supplications',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
