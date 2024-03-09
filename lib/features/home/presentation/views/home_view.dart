@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/calandar.dart';
-import 'package:zain_alhuda/features/home/presentation/widgets/custom_app_bar.dart';
+import 'package:zain_alhuda/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/menu_grid.dart';
 
 class HomeView extends StatelessWidget {
@@ -9,13 +9,11 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: CustomAppBar.scafoldKey,
+      key: HomeAppBar.scafoldKey,
       appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(70), child: CustomAppBar()),
+          preferredSize: Size.fromHeight(70), child: HomeAppBar()),
       endDrawer: const Drawer(
-        child: Column(
-          children: [Text('test')],
-        ),
+        child: Column(children: [Text('test')]),
       ),
       body: const Padding(
         padding: EdgeInsets.only(top: 16, right: 16, left: 16),

@@ -8,38 +8,43 @@ class MenuItem extends StatelessWidget {
     super.key,
     required this.icon,
     required this.text,
+    this.onTap,
   });
 
   final String icon;
   final String text;
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      height: 150,
-      width: 200,
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(5),
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: AppColors.secondColor),
-            child: SvgPicture.asset(icon,
-                color: AppColors.primaryColor, width: 50),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(text, style: AppStyles.elmisri400Size20),
-              const Icon(Icons.arrow_forward, color: AppColors.primaryColor)
-            ],
-          )
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        height: 150,
+        width: 200,
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(5),
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: AppColors.secondColor),
+              child: SvgPicture.asset(icon,
+                  color: AppColors.thirdColor, width: 50),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(text, style: AppStyles.elmisri700Size20),
+                const Icon(Icons.arrow_forward, color: AppColors.primaryColor)
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

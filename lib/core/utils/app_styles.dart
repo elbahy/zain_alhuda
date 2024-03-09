@@ -8,9 +8,14 @@ class AppStyles {
       fontWeight: FontWeight.w400,
       color: AppColors.secondColor);
 
-  static const TextStyle elmisri400Size20 = TextStyle(
+  static const TextStyle elmisri700Size20 = TextStyle(
       fontSize: 20,
       fontFamily: 'ElMessiri',
       fontWeight: FontWeight.w700,
       color: AppColors.primaryColor);
+  static const TextStyle elmisri500Size16 = TextStyle(
+      color: Colors.grey,
+      fontFamily: 'ElMessiri',
+      fontSize: 16,
+      fontWeight: FontWeight.w500);
 }

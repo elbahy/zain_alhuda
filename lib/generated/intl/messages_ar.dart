@@ -22,9 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Quran": MessageLookupByLibrary.simpleMessage("القرآن"),
+        "Quran": MessageLookupByLibrary.simpleMessage("القرآن الكريم"),
         "azkar": MessageLookupByLibrary.simpleMessage("الأذكار"),
         "prayertimes": MessageLookupByLibrary.simpleMessage("مواعيد الصلاة"),
+        "search": MessageLookupByLibrary.simpleMessage("البحث"),
         "supplications": MessageLookupByLibrary.simpleMessage("الأدعية")
       };
 }

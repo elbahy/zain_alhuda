@@ -3,8 +3,8 @@ import 'package:svg_flutter/svg.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
+class HomeAppBar extends StatelessWidget {
+  const HomeAppBar({
     super.key,
   });
 
