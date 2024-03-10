@@ -35,7 +35,7 @@ class MenuGrid extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MenuItem(
-                icon: Assets.assetsImagesMosqueicon,
+                icon: Assets.assetsImagesMosqueIcon,
                 text: S.of(context).prayertimes,
                 onTap: () {
                   GoRouter.of(context).push('/prayerTimes');

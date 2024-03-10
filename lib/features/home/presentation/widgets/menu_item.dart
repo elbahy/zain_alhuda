@@ -21,7 +21,7 @@ class MenuItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         height: 150,
-        width: 200,
+        width: MediaQuery.of(context).size.width * 0.45,
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(10))),
