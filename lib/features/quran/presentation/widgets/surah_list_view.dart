@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:zain_alhuda/core/functions/convert_number_to_arabic.dart';
+import 'package:zain_alhuda/core/functions/convert_number_to_quran_surah_font.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
@@ -60,22 +61,21 @@ class SurahListView extends StatelessWidget {
                     width: 50,
                   ),
                   Positioned(
-                    right: 20,
-                    top: 12,
+                    right: surahData[index].number < 10 ? 21 : 15,
+                    top: 15,
                     child: Text(
-                      convertToArabicNumber(surahData[index].number.toString()),
+                      surahData[index].number.toString(),
                       style: AppStyles.elmisri700Size20.copyWith(
-                        fontSize: 16,
+                        fontSize: surahData[index].number < 100 ? 14 : 12,
                       ),
                     ),
                   )
                 ]),
                 title: Text(
-                  surahData[index].name,
-                  style: AppStyles.elmisri700Size20.copyWith(fontSize: 18),
-                ),
+                    convertNumberToQuranSurahFont(surahData[index].number),
+                    style: AppStyles.quranSurah500Size80),
                 subtitle: Text(
-                  'عدد اياتها  ${convertToArabicNumber(surahData[index].numberOfAyahs.toString())}',
+                  'عدد اياتها  ${surahData[index].numberOfAyahs.toString()}',
                   style: AppStyles.elmisri500Size16
                       .copyWith(color: AppColors.thirdColor, fontSize: 14),
                 ),

@@ -13,6 +13,14 @@ class AppStyles {
       fontFamily: 'NotoKufi',
       fontWeight: FontWeight.w700,
       color: AppColors.primaryColor);
+
+  static const TextStyle quranSurah500Size80 = TextStyle(
+      fontSize: 80,
+      fontFamily: 'QuranSurah',
+      fontWeight: FontWeight.normal,
+      height: .5,
+      color: AppColors.primaryColor);
+
   static const TextStyle elmisri500Size16 = TextStyle(
       color: Colors.grey,
       fontFamily: 'NotoKufi',

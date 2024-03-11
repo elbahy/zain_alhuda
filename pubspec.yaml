@@ -92,8 +92,13 @@ flutter:
     - family: Almarai
       fonts:
         - asset: assets/fonts/Almarai-Regular.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+    - family: Uthmanic
+      fonts:
+        - asset: assets/fonts/uthmanic_hafs_v22.ttf
+    - family: QuranSurah
+      fonts:
+        - asset: assets/fonts/QuranSurah.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
