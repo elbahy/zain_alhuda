@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:svg_flutter/svg.dart';
+import 'package:zain_alhuda/core/functions/convert_surah%20number_to_name.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
@@ -69,10 +70,12 @@ class SurahListView extends StatelessWidget {
                     ),
                   )
                 ]),
-                title: SvgPicture.asset(
-                  'assets/surah_names/${index + 1}.svg',
-                  alignment: Alignment.centerRight,
-                  color: AppColors.primaryColor,
+                minVerticalPadding: 0,
+                title: Text(
+                  convertSurahNumberToName(index + 1),
+                  textDirection: TextDirection.ltr,
+                  textAlign: TextAlign.right,
+                  style: AppStyles.quranSurah500Size80,
                 ),
                 subtitle: Text(
                   'عدد اياتها  ${surahData[index].numberOfAyahs.toString()}',
