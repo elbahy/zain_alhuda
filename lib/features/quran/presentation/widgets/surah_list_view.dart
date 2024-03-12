@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:svg_flutter/svg.dart';
-import 'package:zain_alhuda/core/functions/convert_number_to_arabic.dart';
-import 'package:zain_alhuda/core/functions/convert_number_to_quran_surah_font.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
@@ -65,19 +63,21 @@ class SurahListView extends StatelessWidget {
                     top: 15,
                     child: Text(
                       surahData[index].number.toString(),
-                      style: AppStyles.elmisri700Size20.copyWith(
+                      style: AppStyles.elmisri700Size18.copyWith(
                         fontSize: surahData[index].number < 100 ? 14 : 12,
                       ),
                     ),
                   )
                 ]),
-                title: Text(
-                    convertNumberToQuranSurahFont(surahData[index].number),
-                    style: AppStyles.quranSurah500Size80),
+                title: SvgPicture.asset(
+                  'assets/surah_names/${index + 1}.svg',
+                  alignment: Alignment.centerRight,
+                  color: AppColors.primaryColor,
+                ),
                 subtitle: Text(
                   'عدد اياتها  ${surahData[index].numberOfAyahs.toString()}',
                   style: AppStyles.elmisri500Size16
-                      .copyWith(color: AppColors.thirdColor, fontSize: 14),
+                      .copyWith(color: AppColors.thirdColor, fontSize: 12),
                 ),
                 trailing: surahData[index].revelationType == 'Meccan'
                     ? SvgPicture.asset(

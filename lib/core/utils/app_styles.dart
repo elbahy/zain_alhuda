@@ -8,8 +8,8 @@ class AppStyles {
       fontWeight: FontWeight.w400,
       color: AppColors.secondColor);
 
-  static const TextStyle elmisri700Size20 = TextStyle(
-      fontSize: 20,
+  static const TextStyle elmisri700Size18 = TextStyle(
+      fontSize: 18,
       fontFamily: 'NotoKufi',
       fontWeight: FontWeight.w700,
       color: AppColors.primaryColor);

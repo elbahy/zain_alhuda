@@ -39,7 +39,7 @@ class MenuItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(text, style: AppStyles.elmisri700Size20),
+                Text(text, style: AppStyles.elmisri700Size18),
                 const Icon(Icons.arrow_forward, color: AppColors.primaryColor)
               ],
             )

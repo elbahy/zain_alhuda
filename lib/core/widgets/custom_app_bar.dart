@@ -19,7 +19,7 @@ class CustomAppBar extends StatelessWidget {
         title: Text(
           screenName,
           style:
-              AppStyles.elmisri700Size20.copyWith(color: AppColors.thirdColor),
+              AppStyles.elmisri700Size18.copyWith(color: AppColors.thirdColor),
         ),
         centerTitle: true,
         iconTheme: const IconThemeData(color: AppColors.primaryColor),

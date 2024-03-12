@@ -30,9 +30,9 @@ class _QuranTabViewState extends State<QuranTabView>
             controller: _tabController,
             dividerHeight: 0,
             indicatorColor: AppColors.thirdColor,
-            unselectedLabelStyle: AppStyles.elmisri700Size20
+            unselectedLabelStyle: AppStyles.elmisri700Size18
                 .copyWith(fontWeight: FontWeight.w500),
-            labelStyle: AppStyles.elmisri700Size20
+            labelStyle: AppStyles.elmisri700Size18
                 .copyWith(color: AppColors.thirdColor),
             tabs: const [
               Tab(child: Text('السور')),
