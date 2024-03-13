@@ -20,7 +20,7 @@ class MenuGrid extends StatelessWidget {
                 icon: Assets.assetsImagesQuranIcon,
                 text: S.of(context).Quran,
                 onTap: () {
-                  GoRouter.of(context).push('/quran');
+                  GoRouter.of(context).push('/surahList');
                 }),
             MenuItem(
                 icon: Assets.assetsImagesEzkarIcon,

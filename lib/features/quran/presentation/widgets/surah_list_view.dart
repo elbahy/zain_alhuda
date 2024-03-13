@@ -21,9 +21,9 @@ class SurahListView extends StatelessWidget {
     return BlocConsumer<QuranCubit, QuranState>(
       listener: (context, state) {},
       builder: (context, state) {
-        if (state is GetSurahLoading) {
+        if (state is GetSurahListLoading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (state is GetSurahFailure) {
+        } else if (state is GetSurahListFailure) {
           return AlertDialog(
             title: Text(S.of(context).anerroroccurred),
             content: Text(state.errorMessage),
@@ -37,8 +37,8 @@ class SurahListView extends StatelessWidget {
               ),
             ],
           );
-        } else if (state is GetSurahSuccess) {
-          List<SurahDataModel> surahData = state.surahModel.data;
+        } else if (state is GetSurahListSuccess) {
+          List<SurahListDataModel> surahData = state.surahModel.data;
 
           return ListView.separated(
             separatorBuilder: (context, index) {
@@ -53,6 +53,7 @@ class SurahListView extends StatelessWidget {
             itemCount: surahData.length,
             itemBuilder: (context, index) {
               return ListTile(
+                onTap: () => GoRouter.of(context).push('/quran'),
                 leading: Stack(children: [
                   SvgPicture.asset(
                     Assets.assetsImagesSurahNum,
@@ -60,7 +61,7 @@ class SurahListView extends StatelessWidget {
                     width: 50,
                   ),
                   Positioned(
-                    right: surahData[index].number < 10 ? 21 : 15,
+                    right: surahData[index].number < 10 ? 21 : 16,
                     top: 15,
                     child: Text(
                       surahData[index].number.toString(),

@@ -1,7 +1,7 @@
 class QuranModel {
   final int code;
   final String status;
-  final Data data;
+  final QuranDataModel data;
 
   QuranModel({
     required this.code,
@@ -13,23 +13,24 @@ class QuranModel {
     return QuranModel(
       code: json['code'],
       status: json['status'],
-      data: Data.fromJson(json['data']),
+      data: QuranDataModel.fromJson(json['data']),
     );
   }
 }
 
-class Data {
-  final List<Surah> surahs;
+class QuranDataModel {
+  final List<QuranSurahModel> surahs;
   final Edition edition;
 
-  Data({
+  QuranDataModel({
     required this.surahs,
     required this.edition,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
-      surahs: List<Surah>.from(json['surahs'].map((x) => Surah.fromJson(x))),
+  factory QuranDataModel.fromJson(Map<String, dynamic> json) {
+    return QuranDataModel(
+      surahs: List<QuranSurahModel>.from(
+          json['surahs'].map((x) => QuranSurahModel.fromJson(x))),
       edition: Edition.fromJson(json['edition']),
     );
   }
@@ -64,15 +65,15 @@ class Edition {
   }
 }
 
-class Surah {
+class QuranSurahModel {
   final int number;
   final String name;
   final String englishName;
   final String englishNameTranslation;
   final String revelationType;
-  final List<Ayah> ayahs;
+  final List<QuranAyahModel> ayahs;
 
-  Surah({
+  QuranSurahModel({
     required this.number,
     required this.name,
     required this.englishName,
@@ -81,19 +82,20 @@ class Surah {
     required this.ayahs,
   });
 
-  factory Surah.fromJson(Map<String, dynamic> json) {
-    return Surah(
+  factory QuranSurahModel.fromJson(Map<String, dynamic> json) {
+    return QuranSurahModel(
       number: json['number'],
       name: json['name'],
       englishName: json['englishName'],
       englishNameTranslation: json['englishNameTranslation'],
       revelationType: json['revelationType'],
-      ayahs: List<Ayah>.from(json['ayahs'].map((x) => Ayah.fromJson(x))),
+      ayahs: List<QuranAyahModel>.from(
+          json['ayahs'].map((x) => QuranAyahModel.fromJson(x))),
     );
   }
 }
 
-class Ayah {
+class QuranAyahModel {
   final int number;
   final String audio;
   final List<String> audioSecondary;
@@ -106,7 +108,7 @@ class Ayah {
   final int hizbQuarter;
   final dynamic sajda;
 
-  Ayah({
+  QuranAyahModel({
     required this.number,
     required this.audio,
     required this.audioSecondary,
@@ -119,8 +121,8 @@ class Ayah {
     required this.hizbQuarter,
     required this.sajda,
   });
-  factory Ayah.fromJson(Map<String, dynamic> json) {
-    return Ayah(
+  factory QuranAyahModel.fromJson(Map<String, dynamic> json) {
+    return QuranAyahModel(
       number: json['number'],
       audio: json['audio'],
       audioSecondary: List<String>.from(json['audioSecondary'].map((x) => x)),

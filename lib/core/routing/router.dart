@@ -4,6 +4,7 @@ import 'package:zain_alhuda/features/azkar/presentation/views/azkar_view.dart';
 import 'package:zain_alhuda/features/home/presentation/views/home_view.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/views/prayer_times_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
+import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/quran_view.dart';
 import 'package:zain_alhuda/features/supplications/presentation/views/supplications_view.dart';
 
@@ -14,10 +15,10 @@ abstract class AppRouter {
       builder: (context, state) => const HomeView(),
     ),
     GoRoute(
-      path: '/quran',
+      path: '/surahList',
       builder: (context, state) => BlocProvider(
-        create: (context) => QuranCubit()..getSurah(),
-        child: const QuranView(),
+        create: (context) => QuranCubit()..getSurahList(),
+        child: const SurahView(),
       ),
     ),
     GoRoute(
@@ -31,6 +32,13 @@ abstract class AppRouter {
     GoRoute(
       path: '/azkar',
       builder: (context, state) => const AzkarView(),
+    ),
+    GoRoute(
+      path: '/quran',
+      builder: (context, state) => BlocProvider(
+        create: (context) => QuranCubit()..getQuran(),
+        child: const QuranView(),
+      ),
     ),
   ]);
 }
