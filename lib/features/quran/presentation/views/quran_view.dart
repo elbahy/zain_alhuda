@@ -164,7 +164,7 @@ class QuranView extends StatelessWidget {
             if (state is GetQuranSuccess) {
               List<QuranSurahModel> quranSurah = state.quranModel.data.surahs;
 
-              // تجميع الآيات حسب الصفحة
+              //تجميع الآيات حسب الصفحة
               Map<int, List<QuranAyahModel>> ayahsByPage = {};
               for (var surah in quranSurah) {
                 for (var ayah in surah.ayahs) {
