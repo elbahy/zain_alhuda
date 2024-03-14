@@ -214,23 +214,27 @@ class QuranView extends StatelessWidget {
                               ),
                               textAlign: TextAlign.center,
                             ),
-                            Text(
-                              surahName[0],
-                              style: const TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Text(
-                              surahName[1],
-                              textAlign: TextAlign.center,
-                              textDirection: TextDirection.rtl,
-                              style: const TextStyle(
-                                fontSize: 30.0,
-                                fontFamily: 'Uthmanic',
-                              ),
-                            ),
+                            surahName[0] != ''
+                                ? Text(
+                                    surahName[0],
+                                    style: const TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  )
+                                : const SizedBox(),
+                            surahName[1] != ''
+                                ? Text(
+                                    surahName[1],
+                                    textAlign: TextAlign.center,
+                                    textDirection: TextDirection.rtl,
+                                    style: const TextStyle(
+                                      fontSize: 30.0,
+                                      fontFamily: 'Uthmanic',
+                                    ),
+                                  )
+                                : const SizedBox(),
                             const SizedBox(height: 8.0),
                             const SizedBox(height: 8.0),
                             buildAyahsText(quranAyahsOnPage, surahName[0]),
@@ -276,7 +280,7 @@ class QuranView extends StatelessWidget {
       textAlign: TextAlign.center,
       textDirection: TextDirection.rtl,
       style: const TextStyle(
-        fontSize: 30.0,
+        fontSize: 28.0,
         fontFamily: 'Uthmanic',
       ),
     );
