@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:zain_alhuda/core/widgets/custom_app_bar.dart';
 import 'package:zain_alhuda/features/quran/presentation/widgets/quran_tab_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/widgets/search_widget.dart';

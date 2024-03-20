@@ -274,14 +274,13 @@ class QuranView extends StatelessWidget {
         ayahsText += ' ';
       }
     }
-
     return Text(
       ayahsText,
       textAlign: TextAlign.center,
       textDirection: TextDirection.rtl,
       style: const TextStyle(
         fontSize: 28.0,
-        fontFamily: 'Uthmanic',
+        fontFamily: 'Almarai',
       ),
     );
   }

@@ -53,7 +53,9 @@ class SurahListView extends StatelessWidget {
             itemCount: surahData.length,
             itemBuilder: (context, index) {
               return ListTile(
-                onTap: () => GoRouter.of(context).push('/quran'),
+                onTap: () {
+                  GoRouter.of(context).push('/quran');
+                },
                 leading: Stack(children: [
                   SvgPicture.asset(
                     Assets.assetsImagesSurahNum,
