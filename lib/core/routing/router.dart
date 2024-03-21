@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_view.dart';
 import 'package:zain_alhuda/features/home/presentation/views/home_view.dart';
+import 'package:zain_alhuda/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/views/prayer_times_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
@@ -39,6 +40,10 @@ abstract class AppRouter {
         create: (context) => QuranCubit()..getQuran(),
         child: const QuranView(),
       ),
+    ),
+    GoRoute(
+      path: '/onboarding',
+      builder: (context, state) => const OnbardingView(),
     ),
   ]);
 }

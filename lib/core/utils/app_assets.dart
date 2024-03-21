@@ -29,6 +29,18 @@ class Assets {
   /// assets/images/mosque_icon.svg
   static const String assetsImagesMosqueIcon = "assets/images/mosque_icon.svg";
 
+  /// Assets for assetsImagesOnboardingDoaa
+  /// assets/images/onboarding_doaa.jpg
+  static const String assetsImagesOnboardingDoaa = "assets/images/onboarding_doaa.jpg";
+
+  /// Assets for assetsImagesOnboardingPrayTimes
+  /// assets/images/onboarding_pray_times.jpg
+  static const String assetsImagesOnboardingPrayTimes = "assets/images/onboarding_pray_times.jpg";
+
+  /// Assets for assetsImagesOnboardingQuran
+  /// assets/images/onboarding_quran.jpg
+  static const String assetsImagesOnboardingQuran = "assets/images/onboarding_quran.jpg";
+
   /// Assets for assetsImagesProphetMosque
   /// assets/images/prophet_mosque.svg
   static const String assetsImagesProphetMosque = "assets/images/prophet_mosque.svg";
