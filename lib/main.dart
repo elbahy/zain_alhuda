@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
 import 'package:zain_alhuda/core/routing/router.dart';
+import 'package:zain_alhuda/core/services/service_locator.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
   runApp(const ZainAlhuda());
+  WidgetsFlutterBinding.ensureInitialized();
+  setupServiceLocator();
+  await getIt<CacheHelper>().init();
 }
 
 class ZainAlhuda extends StatelessWidget {

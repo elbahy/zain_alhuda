@@ -7,12 +7,17 @@ import 'package:zain_alhuda/features/prayer_times/presentation/views/prayer_time
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/quran_view.dart';
+import 'package:zain_alhuda/features/splash/presentation/views/splash_view.dart';
 import 'package:zain_alhuda/features/supplications/presentation/views/supplications_view.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
+      builder: (context, state) => const SplashView(),
+    ),
+    GoRoute(
+      path: '/home',
       builder: (context, state) => const HomeView(),
     ),
     GoRoute(
@@ -42,8 +47,8 @@ abstract class AppRouter {
       ),
     ),
     GoRoute(
-      path: '/onboarding',
-      builder: (context, state) => const OnbardingView(),
+      path: '/onBoarding',
+      builder: (context, state) => const OnBardingView(),
     ),
   ]);
 }
