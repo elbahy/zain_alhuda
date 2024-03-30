@@ -7,7 +7,9 @@ class QuranModel {
 
   factory QuranModel.fromJson(Map<String, dynamic> json) {
     return QuranModel(
-      data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+      data: json["data"] == null
+          ? []
+          : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
     );
   }
 }
@@ -36,7 +38,9 @@ class Datum {
       englishName: json["englishName"],
       englishNameTranslation: json["englishNameTranslation"],
       revelationType: json["revelationType"],
-      ayahs: List<Ayah>.from(json["ayahs"].map((x) => Ayah.fromJson(x))),
+      ayahs: json["ayahs"] == null
+          ? []
+          : List<Ayah>.from(json["ayahs"]!.map((x) => Ayah.fromJson(x))),
     );
   }
 }
@@ -57,7 +61,7 @@ class Ayah {
 
   final int number;
   final String text;
-  final String tafseer;
+  final String? tafseer;
   final int numberInSurah;
   final int juz;
   final int manzil;

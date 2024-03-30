@@ -56,7 +56,7 @@ class SurahListView extends StatelessWidget {
               return ListTile(
                 onTap: () {
                   GoRouter.of(context)
-                      .push('/quran', extra: quranData[index].number);
+                      .push('/quran', extra: quranData[index].ayahs.first.page);
                 },
                 leading: Stack(children: [
                   SvgPicture.asset(
@@ -87,7 +87,7 @@ class SurahListView extends StatelessWidget {
                   style: AppStyles.elmisri500Size16
                       .copyWith(color: AppColors.thirdColor, fontSize: 12),
                 ),
-                trailing: quranData[index].revelationType == 'Meccan'
+                trailing: quranData[index].revelationType == 'مكية'
                     ? SvgPicture.asset(
                         Assets.assetsImagesKaaba,
                         width: 40,
