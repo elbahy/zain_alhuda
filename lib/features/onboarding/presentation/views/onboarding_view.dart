@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
 import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
 import 'package:zain_alhuda/core/functions/custome_navigate.dart';
 import 'package:zain_alhuda/core/services/service_locator.dart';
@@ -59,7 +57,7 @@ class _OnBardingViewState extends State<OnBardingView> {
             const Spacer(),
             ElevatedButton(
                 onPressed: () {
-                  CustomeNavigate.replace(context: context, screen: '/home');
+                  CustomeNavigate.replace(context, '/home');
                   getIt<CacheHelper>()
                       .saveData(key: 'isOnBoardingVisted', value: true);
                 },

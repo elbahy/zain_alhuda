@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:zain_alhuda/core/functions/convert_surah%20number_to_name.dart';
+import 'package:zain_alhuda/core/functions/custome_navigate.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
-import 'package:zain_alhuda/features/quran/data/models/surah_model.dart';
+import 'package:zain_alhuda/features/quran/data/models/quran_model.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_state.dart';
 import 'package:zain_alhuda/generated/l10n.dart';
@@ -21,24 +22,24 @@ class SurahListView extends StatelessWidget {
     return BlocConsumer<QuranCubit, QuranState>(
       listener: (context, state) {},
       builder: (context, state) {
-        if (state is GetSurahListLoading) {
+        if (state is GetQuranLoading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (state is GetSurahListFailure) {
+        } else if (state is GetQuranFailure) {
           return AlertDialog(
             title: Text(S.of(context).anerroroccurred),
             content: Text(state.errorMessage),
             actions: [
               TextButton.icon(
                 onPressed: () {
-                  GoRouter.of(context).pushReplacement('/');
+                  CustomeNavigate.replace(context, '/');
                 },
                 icon: const Icon(Icons.home_filled),
                 label: const Text("الذهاب للرئيسية"),
               ),
             ],
           );
-        } else if (state is GetSurahListSuccess) {
-          List<SurahListDataModel> surahData = state.surahModel.data;
+        } else if (state is GetQuranSuccess) {
+          List<Datum> quranData = state.quranModel.data;
 
           return ListView.separated(
             separatorBuilder: (context, index) {
@@ -50,11 +51,12 @@ class SurahListView extends StatelessWidget {
                 indent: 25,
               );
             },
-            itemCount: surahData.length,
+            itemCount: quranData.length,
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: () {
-                  GoRouter.of(context).push('/quran');
+                  GoRouter.of(context)
+                      .push('/quran', extra: quranData[index].number);
                 },
                 leading: Stack(children: [
                   SvgPicture.asset(
@@ -63,12 +65,12 @@ class SurahListView extends StatelessWidget {
                     width: 50,
                   ),
                   Positioned(
-                    right: surahData[index].number < 10 ? 21 : 16,
+                    right: quranData[index].number < 10 ? 21 : 16,
                     top: 15,
                     child: Text(
-                      surahData[index].number.toString(),
+                      quranData[index].number.toString(),
                       style: AppStyles.elmisri700Size18.copyWith(
-                        fontSize: surahData[index].number < 100 ? 14 : 12,
+                        fontSize: quranData[index].number < 100 ? 14 : 12,
                       ),
                     ),
                   )
@@ -81,11 +83,11 @@ class SurahListView extends StatelessWidget {
                   style: AppStyles.quranSurah500Size80,
                 ),
                 subtitle: Text(
-                  'عدد اياتها  ${surahData[index].numberOfAyahs.toString()}',
+                  'عدد اياتها  ${quranData[index].ayahs.length.toString()}',
                   style: AppStyles.elmisri500Size16
                       .copyWith(color: AppColors.thirdColor, fontSize: 12),
                 ),
-                trailing: surahData[index].revelationType == 'Meccan'
+                trailing: quranData[index].revelationType == 'Meccan'
                     ? SvgPicture.asset(
                         Assets.assetsImagesKaaba,
                         width: 40,

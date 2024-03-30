@@ -4,14 +4,14 @@ import 'package:zain_alhuda/core/utils/app_styles.dart';
 import 'package:zain_alhuda/features/quran/presentation/widgets/juz_list_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/widgets/surah_list_view.dart';
 
-class QuranTabView extends StatefulWidget {
-  const QuranTabView({super.key});
+class SurahTabView extends StatefulWidget {
+  const SurahTabView({super.key});
 
   @override
-  State<QuranTabView> createState() => _QuranTabViewState();
+  State<SurahTabView> createState() => _SurahTabViewState();
 }
 
-class _QuranTabViewState extends State<QuranTabView>
+class _SurahTabViewState extends State<SurahTabView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 

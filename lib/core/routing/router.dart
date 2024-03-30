@@ -23,7 +23,7 @@ abstract class AppRouter {
     GoRoute(
       path: '/surahList',
       builder: (context, state) => BlocProvider(
-        create: (context) => QuranCubit()..getSurahList(),
+        create: (context) => QuranCubit()..getQuran(),
         child: const SurahView(),
       ),
     ),
@@ -41,10 +41,7 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: '/quran',
-      builder: (context, state) => BlocProvider(
-        create: (context) => QuranCubit()..getQuran(),
-        child: const QuranView(),
-      ),
+      builder: (context, state) => QuranView(quranPage: state.extra as int),
     ),
     GoRoute(
       path: '/onBoarding',

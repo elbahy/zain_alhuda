@@ -1,11 +1,11 @@
 import 'package:go_router/go_router.dart';
 
 class CustomeNavigate {
-  static void navigate({required context, required String screen}) {
-    GoRouter.of(context).push(screen);
+  static void navigate(context, String routeName, {Object? extra}) {
+    GoRouter.of(context).push(routeName, extra: extra);
   }
 
-  static void replace({required context, required String screen}) {
-    GoRouter.of(context).push(screen);
+  static void replace(context, String routeName, {Object? extra}) {
+    GoRouter.of(context).push(routeName, extra: extra);
   }
 }
