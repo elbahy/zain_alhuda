@@ -18,11 +18,12 @@ class LastQuranRead extends StatefulWidget {
 class _LastQuranReadState extends State<LastQuranRead> {
   @override
   Widget build(BuildContext context) {
-    setState(() {});
     return GestureDetector(
       onTap: () {
-        CustomeNavigate.navigate(context, '/quran',
-            extra: getIt<CacheHelper>().getData(key: 'lastQuranPage'));
+        setState(() {
+          CustomeNavigate.navigate(context, '/quran',
+              extra: getIt<CacheHelper>().getData(key: 'lastQuranPage'));
+        });
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 5),
