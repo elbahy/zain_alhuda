@@ -17,7 +17,7 @@ class AppStyles {
   static const TextStyle quranSurah500Size80 = TextStyle(
       fontSize: 80,
       fontFamily: 'QuranSurah',
-      fontWeight: FontWeight.normal,
+      fontWeight: FontWeight.w100,
       height: .5,
       color: AppColors.primaryColor);
 
