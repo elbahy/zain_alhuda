@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
 import 'package:zain_alhuda/core/databases/local_json/json_load.dart';
 import 'package:zain_alhuda/core/databases/local_json/json_strings.dart';
+import 'package:zain_alhuda/core/services/service_locator.dart';
 import 'package:zain_alhuda/features/quran/data/models/quran_model.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_state.dart';
 
@@ -30,5 +32,16 @@ class QuranCubit extends Cubit<QuranState> {
     } on Exception catch (e) {
       emit(GetQuranFailure(errorMessage: e.toString()));
     }
+  }
+}
+
+class QuranAppBarCubit extends Cubit<QuranAppBarState> {
+  QuranAppBarCubit() : super(QuranAppBarInitial());
+  int page = getIt<CacheHelper>().getData(key: 'bookmarkPage') ?? 605;
+
+  void bookmarkPage(int pageNum) {
+    emit(QuranAppBarBookmarkLoading());
+    getIt<CacheHelper>().saveData(key: 'bookmarkPage', value: pageNum);
+    emit(QuranAppBarBookmarkSuccess());
   }
 }
