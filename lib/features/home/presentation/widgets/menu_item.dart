@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
+import 'package:zain_alhuda/core/functions/custome_navigate.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
 
@@ -8,16 +9,17 @@ class MenuItem extends StatelessWidget {
     super.key,
     required this.icon,
     required this.text,
-    this.onTap,
+    required this.routName,
   });
 
-  final String icon;
-  final String text;
-  final Function()? onTap;
+  final String icon, text, routName;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        CustomeNavigate.navigate(context, routName);
+      },
       child: Container(
         padding: const EdgeInsets.all(16),
         height: 150,

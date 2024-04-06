@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
+import 'package:zain_alhuda/core/functions/custome_navigate.dart';
+import 'package:zain_alhuda/core/services/service_locator.dart';
 import 'package:zain_alhuda/core/widgets/custom_app_bar.dart';
 import 'package:zain_alhuda/features/quran/presentation/widgets/quran_tab_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/widgets/search_widget.dart';
@@ -14,7 +17,17 @@ class SurahView extends StatelessWidget {
             preferredSize: const Size.fromHeight(70),
             child: CustomAppBar(
               S.of(context).Quran,
-              actions: const [Icon(Icons.bookmark_outlined, size: 30)],
+              actions: [
+                getIt<CacheHelper>().getData(key: 'bookmarkPage') != null
+                    ? IconButton(
+                        onPressed: () {
+                          CustomeNavigate.navigate(context, '/quran',
+                              extra: getIt<CacheHelper>()
+                                  .getData(key: 'bookmarkPage'));
+                        },
+                        icon: const Icon(Icons.bookmark_outlined, size: 30))
+                    : const SizedBox()
+              ],
             )),
         body: Padding(
           padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),

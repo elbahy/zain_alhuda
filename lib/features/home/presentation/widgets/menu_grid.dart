@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/menu_item.dart';
 import 'package:zain_alhuda/generated/l10n.dart';
@@ -19,15 +18,11 @@ class MenuGrid extends StatelessWidget {
             MenuItem(
                 icon: Assets.assetsImagesQuranIcon,
                 text: S.of(context).Quran,
-                onTap: () {
-                  GoRouter.of(context).push('/surahList');
-                }),
+                routName: '/surahList'),
             MenuItem(
                 icon: Assets.assetsImagesEzkarIcon,
                 text: S.of(context).azkar,
-                onTap: () {
-                  GoRouter.of(context).push('/azkar');
-                }),
+                routName: '/azkar'),
           ],
         ),
         const SizedBox(height: 18),
@@ -37,15 +32,11 @@ class MenuGrid extends StatelessWidget {
             MenuItem(
                 icon: Assets.assetsImagesMosqueIcon,
                 text: S.of(context).prayertimes,
-                onTap: () {
-                  GoRouter.of(context).push('/prayerTimes');
-                }),
+                routName: '/prayerTimes'),
             MenuItem(
                 icon: Assets.assetsImagesDoaaIcon,
                 text: S.of(context).supplications,
-                onTap: () {
-                  GoRouter.of(context).push('/supplications');
-                }),
+                routName: '/supplications'),
           ],
         ),
       ],

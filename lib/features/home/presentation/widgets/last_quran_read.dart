@@ -20,9 +20,10 @@ class _LastQuranReadState extends State<LastQuranRead> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          CustomeNavigate.navigate(context, '/quran',
-              extra: getIt<CacheHelper>().getData(key: 'lastQuranPage'));
+        CustomeNavigate.navigate(context, '/quran',
+            extra: getIt<CacheHelper>().getData(key: 'lastQuranPage'),
+            then: (value) {
+          setState(() {});
         });
       },
       child: Container(

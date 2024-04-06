@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zain_alhuda/core/functions/convert_number_to_arabic.dart';
+import 'package:zain_alhuda/core/functions/convert_weekday_to_arabic.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
@@ -10,6 +12,8 @@ class Calendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+
     return Column(
       children: [
         Container(
@@ -28,15 +32,18 @@ class Calendar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(width: 20),
-                  const Text('الاربعاء', style: AppStyles.elmisri400Size30),
+                  Text(getArabicWeekday(now.weekday),
+                      style: AppStyles.elmisri400Size30),
                   Image.asset(Assets.assetsImagesIslamicCalender,
                       opacity: const AlwaysStoppedAnimation(0.5), width: 100)
                 ],
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(" 27 شعبان 1445", style: AppStyles.elmisri400Size30)
+                  Text(
+                      '${convertNumberToArabic(now.day)}-${convertNumberToArabic(now.month)}-${convertNumberToArabic(now.year)}',
+                      style: AppStyles.elmisri400Size30)
                 ],
               )
             ],
