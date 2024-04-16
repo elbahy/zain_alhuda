@@ -20,7 +20,7 @@ abstract class AppRouter {
     GoRoute(
       path: '/home',
       builder: (context, state) => BlocProvider(
-        create: (context) => HomeCubit(),
+        create: (context) => HomeCubit()..getLocation(),
         child: const HomeView(),
       ),
     ),

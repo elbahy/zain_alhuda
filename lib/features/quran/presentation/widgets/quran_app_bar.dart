@@ -8,6 +8,7 @@ import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_state.dart';
+import 'package:zain_alhuda/features/quran/presentation/widgets/quran_bottom_sheet.dart';
 
 class QuranAppBar extends StatelessWidget {
   const QuranAppBar({
@@ -28,34 +29,58 @@ class QuranAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (_) {
+                      return const QuranBottomSheet();
+                    },
+                  );
+                },
+                icon: const Icon(
+                  Icons.more_horiz_outlined,
+                  color: AppColors.secondColor,
+                  size: 30,
+                ),
+              ),
+              BlocConsumer<QuranAppBarCubit, QuranAppBarState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                },
+                builder: (context, state) {
+                  return IconButton(
+                      onPressed: () {
+                        BlocProvider.of<QuranAppBarCubit>(context)
+                            .bookmarkPage(pageNum);
+
+                        print(
+                            getIt<CacheHelper>().getData(key: 'bookmarkPage'));
+                      },
+                      icon: Icon(
+                        getIt<CacheHelper>().getData(key: 'bookmarkPage') ==
+                                pageNum
+                            ? Icons.bookmark
+                            : Icons.bookmark_add_outlined,
+                        color: AppColors.secondColor,
+                        size: 30,
+                      ));
+                },
+              ),
+            ],
+          ),
+          Text(convertSurahNumberToName(suraNum),
+              textDirection: TextDirection.ltr,
+              textAlign: TextAlign.right,
+              style: AppStyles.quranSurah500Size80
+                  .copyWith(fontSize: 70, color: AppColors.secondColor)),
           Text('الجزء ${convertToArabicRank(ayahJuz)}',
               textDirection: TextDirection.ltr,
               textAlign: TextAlign.right,
               style: AppStyles.elmisri500Size16
-                  .copyWith(color: AppColors.primaryColor)),
-          Text(convertSurahNumberToName(suraNum),
-              textDirection: TextDirection.ltr,
-              textAlign: TextAlign.right,
-              style: AppStyles.quranSurah500Size80.copyWith(fontSize: 70)),
-          BlocConsumer<QuranAppBarCubit, QuranAppBarState>(
-            listener: (context, state) {
-              // TODO: implement listener
-            },
-            builder: (context, state) {
-              return IconButton(
-                  onPressed: () {
-                    BlocProvider.of<QuranAppBarCubit>(context)
-                        .bookmarkPage(pageNum);
-
-                    print(getIt<CacheHelper>().getData(key: 'bookmarkPage'));
-                  },
-                  icon: Icon(
-                      getIt<CacheHelper>().getData(key: 'bookmarkPage') ==
-                              pageNum
-                          ? Icons.bookmark
-                          : Icons.bookmark_add_outlined));
-            },
-          )
+                  .copyWith(color: AppColors.secondColor)),
         ],
       ),
     );

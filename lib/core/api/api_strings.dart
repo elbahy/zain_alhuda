@@ -1,6 +1,9 @@
 class EndPoints {
-  static const String baseUrl = "https://api.alquran.cloud/v1/";
+  static const String quranBaseUrl = "https://api.alquran.cloud/v1/";
   static const String surahs = "surah";
+
+  static const String adhanBaseUrl = " http://api.aladhan.com/v1/";
+  static const String calendarByAddress = "calendarByAddress";
 }
 
 class ApiStrings {
