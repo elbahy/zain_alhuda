@@ -1,3 +1,5 @@
+import 'package:zain_alhuda/features/home/data/models/adhan_model.dart';
+
 class HomeState {}
 
 class HomeInitial extends HomeState {}
@@ -22,4 +24,18 @@ class GetLocationSuccess extends HomeState {
 class GetLocationFailure extends HomeState {
   final String errorMsg;
   GetLocationFailure({required this.errorMsg});
+}
+
+class GetAdhanTodayLoading extends HomeState {}
+
+class GetAdhanTodaySuccess extends HomeState {
+  final AdhanModel adhanToday;
+
+  GetAdhanTodaySuccess({required this.adhanToday});
+}
+
+class GetAdhanTodayFailure extends HomeState {
+  final String errorMsg;
+
+  GetAdhanTodayFailure({required this.errorMsg});
 }

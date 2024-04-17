@@ -25,6 +25,10 @@ class Assets {
   /// assets/images/menu.svg
   static const String assetsImagesMenu = "assets/images/menu.svg";
 
+  /// Assets for assetsImagesMosqueBg
+  /// assets/images/mosque_bg.png
+  static const String assetsImagesMosqueBg = "assets/images/mosque_bg.png";
+
   /// Assets for assetsImagesMosqueIcon
   /// assets/images/mosque_icon.svg
   static const String assetsImagesMosqueIcon = "assets/images/mosque_icon.svg";
