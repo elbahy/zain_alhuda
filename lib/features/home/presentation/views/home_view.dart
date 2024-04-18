@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
 import 'package:zain_alhuda/core/services/service_locator.dart';
-import 'package:zain_alhuda/features/home/presentation/widgets/calandar.dart';
+import 'package:zain_alhuda/features/home/presentation/widgets/calendar.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/last_quran_read.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/menu_grid.dart';
@@ -13,8 +13,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: HomeAppBar.scafoldKey,
-      appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(70), child: HomeAppBar()),
+      appBar: const PreferredSize(preferredSize: Size.fromHeight(70), child: HomeAppBar()),
       endDrawer: const Drawer(
         child: Column(children: [Text('test')]),
       ),
@@ -24,9 +23,7 @@ class HomeView extends StatelessWidget {
           slivers: [
             const SliverToBoxAdapter(child: Calendar()),
             SliverToBoxAdapter(
-              child: getIt<CacheHelper>().getData(key: 'lastSurahNum') != null
-                  ? const LastQuranRead()
-                  : const SizedBox(),
+              child: getIt<CacheHelper>().getData(key: 'lastSurahNum') != null ? const LastQuranRead() : const SizedBox(),
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 20)),
             const SliverToBoxAdapter(child: MenuGrid())

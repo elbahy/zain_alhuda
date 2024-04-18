@@ -39,3 +39,11 @@ class GetAdhanTodayFailure extends HomeState {
 
   GetAdhanTodayFailure({required this.errorMsg});
 }
+
+class GetNextPrayerLoading extends HomeState {}
+
+class GetNextPrayerSuccess extends HomeState {
+  final String nextPraying;
+
+  GetNextPrayerSuccess({required this.nextPraying});
+}

@@ -20,16 +20,16 @@ class _LastQuranReadState extends State<LastQuranRead> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        CustomeNavigate.navigate(context, '/quran',
-            extra: getIt<CacheHelper>().getData(key: 'lastQuranPage'),
-            then: (value) {
+        CustomeNavigate.navigate(context, '/quran', extra: getIt<CacheHelper>().getData(key: 'lastQuranPage'), then: (value) {
           setState(() {});
         });
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 5),
         width: 50,
-        color: Colors.white,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
         child: Column(
           children: [
             const Text('اخر ماتم قراءته', style: AppStyles.elmisri700Size18),
@@ -37,8 +37,7 @@ class _LastQuranReadState extends State<LastQuranRead> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  convertSurahNumberToName(
-                      getIt<CacheHelper>().getData(key: 'lastSurahNum')),
+                  convertSurahNumberToName(getIt<CacheHelper>().getData(key: 'lastSurahNum')),
                   style: AppStyles.quranSurah500Size80,
                 ),
                 Text(
