@@ -43,24 +43,15 @@ class QuranView extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                      AppColors.primaryColor,
-                      AppColors.thirdColor
-                    ])),
+                    decoration: const BoxDecoration(gradient: LinearGradient(colors: [AppColors.primaryColor, AppColors.thirdColor])),
                     child: PageView.builder(
                       controller: PageController(initialPage: page - 1),
                       itemBuilder: (_, index) {
                         List<Datum> quranData = state.quranModel.data;
-                        Datum suraName = quranData.firstWhere((element) =>
-                            element.ayahs
-                                .any((Ayah) => Ayah.page == index + 1));
-                        Ayah ayah = suraName.ayahs
-                            .firstWhere((element) => element.page == index + 1);
-                        getIt<CacheHelper>()
-                            .saveData(key: 'lastQuranPage', value: index + 1);
-                        getIt<CacheHelper>().saveData(
-                            key: 'lastSurahNum', value: suraName.number);
+                        Datum suraName = quranData.firstWhere((element) => element.ayahs.any((Ayah) => Ayah.page == index + 1));
+                        Ayah ayah = suraName.ayahs.firstWhere((element) => element.page == index + 1);
+                        getIt<CacheHelper>().saveData(key: 'lastQuranPage', value: index + 1);
+                        getIt<CacheHelper>().saveData(key: 'lastSurahNum', value: suraName.number);
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -84,14 +75,11 @@ class QuranView extends StatelessWidget {
                                 children: [
                                   Image.asset(
                                     'assets/images/page${index + 1}.png',
-                                    height: MediaQuery.of(context).size.height *
-                                        .85,
+                                    height: MediaQuery.of(context).size.height * .85,
                                   ),
                                   Text(
                                     convertNumberToArabic(index + 1),
-                                    style: AppStyles.elmisri700Size18.copyWith(
-                                        fontSize: 16,
-                                        color: AppColors.primaryColor),
+                                    style: AppStyles.elmisri700Size18.copyWith(fontSize: 16, color: AppColors.primaryColor),
                                   ),
                                 ],
                               ),

@@ -53,7 +53,7 @@ class HomeCubit extends Cubit<HomeState> {
       await ApiConsumer().get(path: 'timings/today?latitude=$latitude&longitude=$longitude&method=5').then((value) {
         adhanModel = AdhanModel.fromJson(value);
         emit(GetAdhanTodaySuccess(adhanToday: adhanModel));
-        getNextPrayer(adhanModel.data!.timings!);
+        getNextPrayer(adhanModel.data.timings);
       });
     } catch (e) {
       emit(GetAdhanTodayFailure(errorMsg: e.toString()));

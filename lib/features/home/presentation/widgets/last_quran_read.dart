@@ -29,6 +29,7 @@ class _LastQuranReadState extends State<LastQuranRead> {
         width: 50,
         decoration: const BoxDecoration(
           color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(
           children: [

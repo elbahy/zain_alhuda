@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zain_alhuda/core/functions/convert_prayer_name_to_arabic.dart';
+import 'package:zain_alhuda/core/functions/custome_navigate.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
@@ -10,15 +11,20 @@ import 'package:zain_alhuda/features/home/presentation/cubit/home_state.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/next_praying_timer.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/prayer_time_list.dart';
 
-class Calendar extends StatelessWidget {
+class Calendar extends StatefulWidget {
   const Calendar({
     super.key,
   });
 
   @override
+  State<Calendar> createState() => _CalendarState();
+}
+
+class _CalendarState extends State<Calendar> {
+  @override
   Widget build(BuildContext context) {
-    late Timings timings;
-    late Hijri hijri;
+    Timings? timings;
+    Hijri? hijri;
 
     HomeCubit cubit = BlocProvider.of<HomeCubit>(context);
 
@@ -57,10 +63,12 @@ class Calendar extends StatelessWidget {
               child: state is GetAdhanTodaySuccess
                   ? Column(
                       children: [
-                        Text(
-                          ' ${hijri.weekday.ar} ${hijri.day} ${hijri.month.ar} ${hijri.year} هـ',
-                          style: AppStyles.elmisri500Size16.copyWith(color: AppColors.secondColor),
-                        ),
+                        hijri != null
+                            ? Text(
+                                ' ${hijri?.weekday.ar} ${hijri?.day} ${hijri?.month.ar} ${hijri?.year} هـ',
+                                style: AppStyles.elmisri500Size16.copyWith(color: AppColors.secondColor),
+                              )
+                            : const SizedBox(), // التحقق من عدم القيمة الغير متاحة,
                         const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -69,11 +77,20 @@ class Calendar extends StatelessWidget {
                               'صلاة ${convertPrayerNameToArabic(cubit.nextPraying)}  بعد',
                               style: AppStyles.elmisri500Size16.copyWith(color: AppColors.secondColor),
                             ),
-                            PrayerCountdown(prayerTime: timings.toJson()[cubit.nextPraying]!)
+                            timings != null
+                                ? PrayerCountdown(
+                                    prayerTime: timings?.toJson()[cubit.nextPraying],
+                                    onCountdownFinished: () {
+                                      setState(() {
+                                        cubit.getLocation();
+                                      });
+                                    },
+                                  )
+                                : const SizedBox()
                           ],
                         ),
                         const SizedBox(height: 10),
-                        PrayerTimeList(timings: timings, nextPraying: cubit.nextPraying),
+                        timings != null ? PrayerTimeList(timings: timings!, nextPraying: cubit.nextPraying) : const SizedBox(),
                       ],
                     )
                   : const Row(
