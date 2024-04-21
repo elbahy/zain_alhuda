@@ -11,21 +11,24 @@ class HomeAppBar extends StatelessWidget {
   static final GlobalKey<ScaffoldState> scafoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      actions: [
-        Builder(builder: (context) {
-          return IconButton(
-              icon: SvgPicture.asset(
-                Assets.assetsImagesMenu,
-                color: AppColors.primaryColor,
-                width: 40,
-              ),
-              onPressed: () {
-                scafoldKey.currentState!.openEndDrawer();
-              });
-        }),
-      ],
-      leading: Image.asset(Assets.assetsImagesApplogo),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+      child: AppBar(
+        actions: [
+          Builder(builder: (context) {
+            return IconButton(
+                icon: SvgPicture.asset(
+                  Assets.assetsImagesMenu,
+                  color: AppColors.primaryColor,
+                  width: 40,
+                ),
+                onPressed: () {
+                  scafoldKey.currentState!.openEndDrawer();
+                });
+          }),
+        ],
+        leading: Image.asset(Assets.assetsImagesApplogo),
+      ),
     );
   }
 }
