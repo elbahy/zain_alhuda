@@ -33,7 +33,7 @@ class _LastQuranReadState extends State<LastQuranRead> {
         ),
         child: Column(
           children: [
-            const Text('اخر ماتم قراءته', style: AppStyles.elmisri700Size18),
+            const Text('اخر تلاوه', style: AppStyles.elmisri700Size18),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

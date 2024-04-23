@@ -22,11 +22,12 @@ class HomeView extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             const SliverToBoxAdapter(child: Calendar()),
+            const SliverToBoxAdapter(child: SizedBox(height: 10)),
+            const SliverToBoxAdapter(child: MenuGrid()),
+            const SliverToBoxAdapter(child: SizedBox(height: 20)),
             SliverToBoxAdapter(
               child: getIt<CacheHelper>().getData(key: 'lastSurahNum') != null ? const LastQuranRead() : const SizedBox(),
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
-            const SliverToBoxAdapter(child: MenuGrid())
           ],
         ),
       ),
