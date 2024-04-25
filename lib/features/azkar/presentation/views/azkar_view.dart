@@ -8,7 +8,7 @@ class AzkarView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Azkar')),
       body: const Center(
-        child: Text('Azkar View'),
+        child: Text('الأذكار'),
       ),
     );
   }

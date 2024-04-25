@@ -52,6 +52,7 @@ class QuranView extends StatelessWidget {
                         Ayah ayah = suraName.ayahs.firstWhere((element) => element.page == index + 1);
                         getIt<CacheHelper>().saveData(key: 'lastQuranPage', value: index + 1);
                         getIt<CacheHelper>().saveData(key: 'lastSurahNum', value: suraName.number);
+                        getIt<CacheHelper>().saveData(key: 'lastAyahNum', value: ayah.numberInSurah);
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

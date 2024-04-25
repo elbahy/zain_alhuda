@@ -21,6 +21,10 @@ class Assets {
   /// assets/images/kaaba.svg
   static const String assetsImagesKaaba = "assets/images/kaaba.svg";
 
+  /// Assets for assetsImagesLastReadQuran
+  /// assets/images/last_read_quran.jpg
+  static const String assetsImagesLastReadQuran = "assets/images/last_read_quran.jpg";
+
   /// Assets for assetsImagesMenu
   /// assets/images/menu.svg
   static const String assetsImagesMenu = "assets/images/menu.svg";
