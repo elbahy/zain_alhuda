@@ -18,13 +18,14 @@ class SurahView extends StatelessWidget {
             child: CustomAppBar(
               S.of(context).Quran,
               actions: [
+                IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
                 getIt<CacheHelper>().getData(key: 'bookmarkPage') != null
                     ? IconButton(
                         onPressed: () {
                           CustomeNavigate.navigate(context, '/quran', extra: getIt<CacheHelper>().getData(key: 'bookmarkPage'));
                         },
                         icon: const Icon(Icons.bookmark_outlined, size: 30))
-                    : const SizedBox()
+                    : const SizedBox(),
               ],
             )),
         body: Padding(

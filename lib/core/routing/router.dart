@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:zain_alhuda/core/widgets/app_custom_bottom_nav_bar.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_view.dart';
 import 'package:zain_alhuda/features/home/presentation/cubit/home_cubit.dart';
 import 'package:zain_alhuda/features/home/presentation/views/home_view.dart';
@@ -16,6 +17,10 @@ abstract class AppRouter {
     GoRoute(
       path: '/',
       builder: (context, state) => const SplashView(),
+    ),
+    GoRoute(
+      path: '/bottomNavBar',
+      builder: (context, state) => const AppBottomNavBar(),
     ),
     GoRoute(
       path: '/home',
