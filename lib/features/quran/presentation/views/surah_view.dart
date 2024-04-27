@@ -32,7 +32,7 @@ class SurahView extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(child: getIt<CacheHelper>().getData(key: 'lastSurahNum') != null ? const LastQuranReadWidget() : const SizedBox()),
+              SliverToBoxAdapter(child: getIt<CacheHelper>().getData(key: 'lastAyahNum') != null ? const LastQuranReadWidget() : const SizedBox()),
               SliverToBoxAdapter(child: SizedBox(height: MediaQuery.of(context).size.height - 200, child: const SurahTabView())),
             ],
           ),
