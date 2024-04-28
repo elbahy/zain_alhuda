@@ -17,20 +17,8 @@ class AppBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PersistentTabController controller = PersistentTabController(initialIndex: 2);
     List<PersistentTabConfig> tabs = [
-      PersistentTabConfig(
-        screen: BlocProvider(
-          create: (context) => HomeCubit()..getLocation(),
-          child: const HomeView(),
-        ),
-        item: ItemConfig(
-          icon: const Icon(Icons.home),
-          title: "الرئيسية",
-          textStyle: AppStyles.elmisri500Size16,
-          activeForegroundColor: AppColors.secondColor,
-          activeColorSecondary: AppColors.primaryColor,
-        ),
-      ),
       PersistentTabConfig(
         screen: BlocProvider(
           create: (context) => QuranCubit()..getQuran(),
@@ -41,7 +29,6 @@ class AppBottomNavBar extends StatelessWidget {
           title: "القرآن الكريم",
           textStyle: AppStyles.elmisri500Size16,
           activeForegroundColor: AppColors.secondColor,
-          activeColorSecondary: AppColors.primaryColor,
         ),
       ),
       PersistentTabConfig(
@@ -51,7 +38,21 @@ class AppBottomNavBar extends StatelessWidget {
           title: "الأذكار",
           textStyle: AppStyles.elmisri500Size16,
           activeForegroundColor: AppColors.secondColor,
-          activeColorSecondary: AppColors.primaryColor,
+        ),
+      ),
+      PersistentTabConfig(
+        screen: BlocProvider(
+          create: (context) => HomeCubit()..getLocation(),
+          child: const HomeView(),
+        ),
+        item: ItemConfig(
+          icon: const CircleAvatar(
+            radius: 25,
+            backgroundColor: AppColors.primaryColor,
+            child: Icon(Icons.home),
+          ),
+          textStyle: AppStyles.elmisri500Size16,
+          activeForegroundColor: AppColors.secondColor,
         ),
       ),
       PersistentTabConfig(
@@ -59,19 +60,39 @@ class AppBottomNavBar extends StatelessWidget {
         item: ItemConfig(
           icon: SvgPicture.asset(
             Assets.assetsImagesQuranIcon,
-            height: 30,
-            colorFilter: const ColorFilter.linearToSrgbGamma(),
+            height: 40,
+            width: 40,
+            colorFilter: const ColorFilter.mode(
+              AppColors.secondColor,
+              BlendMode.srcIn,
+            ),
           ),
           title: "مواعيد الصلاة",
           textStyle: AppStyles.elmisri500Size16,
           activeForegroundColor: AppColors.secondColor,
-          activeColorSecondary: AppColors.primaryColor,
+        ),
+      ),
+      PersistentTabConfig(
+        screen: const AzkarView(),
+        item: ItemConfig(
+          icon: const Icon(Icons.handshake),
+          title: "الأدعية",
+          textStyle: AppStyles.elmisri500Size16,
+          activeForegroundColor: AppColors.secondColor,
         ),
       ),
     ];
     return PersistentTabView(
+      controller: controller,
       tabs: tabs,
-      navBarBuilder: (navBarConfig) => Style8BottomNavBar(
+      navBarBuilder: (navBarConfig) => Style13BottomNavBar(
+        navBarDecoration: const NavBarDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(12),
+            topRight: Radius.circular(12),
+          ),
+          color: AppColors.primaryColor,
+        ),
         navBarConfig: navBarConfig,
       ),
     );
