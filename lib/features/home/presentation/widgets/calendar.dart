@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zain_alhuda/core/functions/convert_prayer_name_to_arabic.dart';
-import 'package:zain_alhuda/core/functions/custome_navigate.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';

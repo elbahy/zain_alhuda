@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
 import 'package:zain_alhuda/core/functions/convert_number_to_arabic.dart';
-import 'package:zain_alhuda/core/functions/convert_surah%20number_to_name.dart';
+import 'package:zain_alhuda/core/functions/convert_surah_number_to_name.dart';
 import 'package:zain_alhuda/core/services/service_locator.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
@@ -47,23 +47,14 @@ class QuranAppBar extends StatelessWidget {
                 ),
               ),
               BlocConsumer<QuranAppBarCubit, QuranAppBarState>(
-                listener: (context, state) {
-                  // TODO: implement listener
-                },
+                listener: (context, state) {},
                 builder: (context, state) {
                   return IconButton(
                       onPressed: () {
-                        BlocProvider.of<QuranAppBarCubit>(context)
-                            .bookmarkPage(pageNum);
-
-                        print(
-                            getIt<CacheHelper>().getData(key: 'bookmarkPage'));
+                        BlocProvider.of<QuranAppBarCubit>(context).bookmarkPage(pageNum);
                       },
                       icon: Icon(
-                        getIt<CacheHelper>().getData(key: 'bookmarkPage') ==
-                                pageNum
-                            ? Icons.bookmark
-                            : Icons.bookmark_add_outlined,
+                        getIt<CacheHelper>().getData(key: 'bookmarkPage') == pageNum ? Icons.bookmark : Icons.bookmark_add_outlined,
                         color: AppColors.secondColor,
                         size: 30,
                       ));
@@ -71,16 +62,8 @@ class QuranAppBar extends StatelessWidget {
               ),
             ],
           ),
-          Text(convertSurahNumberToName(suraNum),
-              textDirection: TextDirection.ltr,
-              textAlign: TextAlign.right,
-              style: AppStyles.quranSurah500Size80
-                  .copyWith(fontSize: 70, color: AppColors.secondColor)),
-          Text('الجزء ${convertToArabicRank(ayahJuz)}',
-              textDirection: TextDirection.ltr,
-              textAlign: TextAlign.right,
-              style: AppStyles.elmisri500Size16
-                  .copyWith(color: AppColors.secondColor)),
+          Text(convertSurahNumberToName(suraNum), textDirection: TextDirection.ltr, textAlign: TextAlign.right, style: AppStyles.quranSurah500Size80.copyWith(fontSize: 70, color: AppColors.secondColor)),
+          Text('الجزء ${convertToArabicRank(ayahJuz)}', textDirection: TextDirection.ltr, textAlign: TextAlign.right, style: AppStyles.elmisri500Size16.copyWith(color: AppColors.secondColor)),
         ],
       ),
     );

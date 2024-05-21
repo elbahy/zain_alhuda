@@ -18,8 +18,3 @@ String getArabicWeekday(int weekday) {
       return 'غير معروف';
   }
 }
-
-void main() {
-  var today = DateTime.now().weekday;
-  print(getArabicWeekday(today)); // سيطبع اسم اليوم بالعربية
-}

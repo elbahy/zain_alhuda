@@ -21,10 +21,9 @@ class ZainAlhuda extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
+      themeMode: ThemeMode.dark,
       locale: const Locale('ar'),
-      theme: ThemeData.light().copyWith(
-          scaffoldBackgroundColor: AppColors.secondColor,
-          appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent)),
+      theme: ThemeData.light().copyWith(scaffoldBackgroundColor: AppColors.secondColor, appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent)),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
 import 'package:zain_alhuda/core/functions/convert_number_to_arabic.dart';
-import 'package:zain_alhuda/core/functions/convert_surah%20number_to_name.dart';
+import 'package:zain_alhuda/core/functions/convert_surah_number_to_name.dart';
 import 'package:zain_alhuda/core/functions/custome_navigate.dart';
 import 'package:zain_alhuda/core/services/service_locator.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';

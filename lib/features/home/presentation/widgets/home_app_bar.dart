@@ -19,7 +19,7 @@ class HomeAppBar extends StatelessWidget {
             return IconButton(
                 icon: SvgPicture.asset(
                   Assets.assetsImagesMenu,
-                  color: AppColors.primaryColor,
+                  colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
                   width: 40,
                 ),
                 onPressed: () {

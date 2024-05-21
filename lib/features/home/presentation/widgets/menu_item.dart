@@ -24,26 +24,19 @@ class MenuItem extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         height: 150,
         width: MediaQuery.of(context).size.width * 0.45,
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+        decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               padding: const EdgeInsets.all(5),
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: AppColors.secondColor),
-              child: SvgPicture.asset(icon,
-                  color: AppColors.thirdColor, width: 50),
+              decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.secondColor),
+              child: SvgPicture.asset(icon, colorFilter: const ColorFilter.mode(AppColors.thirdColor, BlendMode.srcIn), width: 50),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(text, style: AppStyles.elmisri700Size18),
-                const Icon(Icons.arrow_forward, color: AppColors.primaryColor)
-              ],
+              children: [Text(text, style: AppStyles.elmisri700Size18), const Icon(Icons.arrow_forward, color: AppColors.primaryColor)],
             )
           ],
         ),

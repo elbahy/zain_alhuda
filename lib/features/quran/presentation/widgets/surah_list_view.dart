@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:svg_flutter/svg.dart';
-import 'package:zain_alhuda/core/functions/convert_surah%20number_to_name.dart';
+import 'package:zain_alhuda/core/functions/convert_surah_number_to_name.dart';
 import 'package:zain_alhuda/core/functions/custome_navigate.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
@@ -55,13 +55,15 @@ class SurahListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: () {
-                  GoRouter.of(context)
-                      .push('/quran', extra: quranData[index].ayahs.first.page);
+                  GoRouter.of(context).push('/quran', extra: quranData[index].ayahs.first.page);
                 },
                 leading: Stack(children: [
                   SvgPicture.asset(
                     Assets.assetsImagesSurahNum,
-                    color: AppColors.primaryColor,
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.primaryColor,
+                      BlendMode.srcIn,
+                    ),
                     width: 50,
                   ),
                   Positioned(
@@ -84,19 +86,18 @@ class SurahListView extends StatelessWidget {
                 ),
                 subtitle: Text(
                   'عدد اياتها  ${quranData[index].ayahs.length.toString()}',
-                  style: AppStyles.elmisri500Size16
-                      .copyWith(color: AppColors.thirdColor, fontSize: 12),
+                  style: AppStyles.elmisri500Size16.copyWith(color: AppColors.thirdColor, fontSize: 12),
                 ),
                 trailing: quranData[index].revelationType == 'مكية'
                     ? SvgPicture.asset(
                         Assets.assetsImagesKaaba,
                         width: 40,
-                        color: AppColors.thirdColor,
+                        colorFilter: const ColorFilter.mode(AppColors.thirdColor, BlendMode.srcIn),
                       )
                     : SvgPicture.asset(
                         Assets.assetsImagesProphetMosque,
                         width: 40,
-                        color: AppColors.thirdColor,
+                        colorFilter: const ColorFilter.mode(AppColors.thirdColor, BlendMode.srcIn),
                       ),
               );
             },
