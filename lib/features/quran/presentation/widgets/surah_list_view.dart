@@ -4,10 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:zain_alhuda/core/functions/convert_surah_number_to_name.dart';
 import 'package:zain_alhuda/core/functions/custome_navigate.dart';
+import 'package:zain_alhuda/core/functions/get_surah_page_number.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
-import 'package:zain_alhuda/features/quran/data/models/quran_model.dart';
+import 'package:zain_alhuda/features/quran/data/models/surah_model.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_state.dart';
 import 'package:zain_alhuda/generated/l10n.dart';
@@ -19,12 +20,12 @@ class SurahListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<QuranCubit, QuranState>(
-      listener: (context, state) {},
+    return BlocBuilder<QuranCubit, QuranState>(
+      buildWhen: (previous, current) => current is GetSurahListSuccess || current is GetSurahListFailure || current is GetSurahListLoading,
       builder: (context, state) {
-        if (state is GetQuranLoading) {
+        if (state is GetSurahListLoading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (state is GetQuranFailure) {
+        } else if (state is GetSurahListFailure) {
           return AlertDialog(
             title: Text(S.of(context).anerroroccurred),
             content: Text(state.errorMessage),
@@ -38,8 +39,8 @@ class SurahListView extends StatelessWidget {
               ),
             ],
           );
-        } else if (state is GetQuranSuccess) {
-          List<Datum> quranData = state.quranModel.data;
+        } else if (state is GetSurahListSuccess) {
+          List<SurahListDataModel> surahData = state.surahList.data;
 
           return ListView.separated(
             separatorBuilder: (context, index) {
@@ -51,11 +52,11 @@ class SurahListView extends StatelessWidget {
                 indent: 25,
               );
             },
-            itemCount: quranData.length,
+            itemCount: surahData.length,
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: () {
-                  GoRouter.of(context).push('/quran', extra: quranData[index].ayahs.first.page);
+                  GoRouter.of(context).push('/quran', extra: getSurahPage(surahData[index].number));
                 },
                 leading: Stack(children: [
                   SvgPicture.asset(
@@ -67,12 +68,12 @@ class SurahListView extends StatelessWidget {
                     width: 50,
                   ),
                   Positioned(
-                    right: quranData[index].number < 10 ? 21 : 16,
+                    right: surahData[index].number < 10 ? 21 : 16,
                     top: 15,
                     child: Text(
-                      quranData[index].number.toString(),
+                      surahData[index].number.toString(),
                       style: AppStyles.elmisri700Size18.copyWith(
-                        fontSize: quranData[index].number < 100 ? 14 : 12,
+                        fontSize: surahData[index].number < 100 ? 14 : 12,
                       ),
                     ),
                   )
@@ -85,10 +86,10 @@ class SurahListView extends StatelessWidget {
                   style: AppStyles.quranSurah500Size80,
                 ),
                 subtitle: Text(
-                  'عدد اياتها  ${quranData[index].ayahs.length.toString()}',
+                  'عدد اياتها  ${surahData[index].numberOfAyahs.toString()}',
                   style: AppStyles.elmisri500Size16.copyWith(color: AppColors.thirdColor, fontSize: 12),
                 ),
-                trailing: quranData[index].revelationType == 'مكية'
+                trailing: surahData[index].revelationType == 'مكية'
                     ? SvgPicture.asset(
                         Assets.assetsImagesKaaba,
                         width: 40,
@@ -99,6 +100,7 @@ class SurahListView extends StatelessWidget {
                         width: 40,
                         colorFilter: const ColorFilter.mode(AppColors.thirdColor, BlendMode.srcIn),
                       ),
+                isThreeLine: true,
               );
             },
           );

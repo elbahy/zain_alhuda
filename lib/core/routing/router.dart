@@ -32,7 +32,7 @@ abstract class AppRouter {
     GoRoute(
       path: '/surahList',
       builder: (context, state) => BlocProvider(
-        create: (context) => QuranCubit()..getQuran(),
+        create: (context) => QuranCubit()..getSurahList(),
         child: const SurahView(),
       ),
     ),
