@@ -55,6 +55,19 @@ class Content {
     required this.bless,
   });
 
+  Content copyWith({
+    int? id,
+    String? zekr,
+    int? repeat,
+    String? bless,
+  }) =>
+      Content(
+        id: id ?? this.id,
+        zekr: zekr ?? this.zekr,
+        repeat: repeat ?? this.repeat,
+        bless: bless ?? this.bless,
+      );
+
   factory Content.fromJson(Map<String, dynamic> json) => Content(
         id: json["id"],
         zekr: json["zekr"],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zain_alhuda/core/utils/app_assets.dart';
-import 'package:zain_alhuda/core/utils/app_colors.dart';
+import 'package:zain_alhuda/core/widgets/app_bar_space.dart';
 
 class PrayerTimesView extends StatelessWidget {
   const PrayerTimesView({super.key});
@@ -10,14 +9,7 @@ class PrayerTimesView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('مواعيد الصلاة'),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [AppColors.primaryColor, AppColors.thirdColor],
-            ),
-            image: DecorationImage(image: AssetImage(Assets.assetsImagesAppBarBg), fit: BoxFit.cover),
-          ),
-        ),
+        flexibleSpace: const AppBarSpace(),
       ),
       body: const Center(
         child: Text('Prayer Times View'),
