@@ -1,6 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zain_alhuda/core/widgets/app_custom_bottom_nav_bar.dart';
+import 'package:zain_alhuda/features/azkar/data/models/azkar_model.dart';
+import 'package:zain_alhuda/features/azkar/presentation/cubit/azkar_cubit.dart';
+import 'package:zain_alhuda/features/azkar/presentation/views/azkar_content_view.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_view.dart';
 import 'package:zain_alhuda/features/home/presentation/cubit/home_cubit.dart';
 import 'package:zain_alhuda/features/home/presentation/views/home_view.dart';
@@ -46,7 +49,14 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: '/azkar',
-      builder: (context, state) => const AzkarView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => AzkarCubit()..getAzkar(),
+        child: const AzkarView(),
+      ),
+    ),
+    GoRoute(
+      path: '/azkarContent',
+      builder: (context, state) => AzkarContentView(data: state.extra as Datum),
     ),
     GoRoute(
       path: '/quran',
