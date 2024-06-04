@@ -29,6 +29,17 @@ class Datum {
     required this.content,
   });
 
+  Datum copyWith({
+    int? id,
+    String? title,
+    List<Content>? content,
+  }) =>
+      Datum(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        content: content ?? this.content,
+      );
+
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         title: json["title"],
@@ -47,12 +58,14 @@ class Content {
   final String zekr;
   final int repeat;
   final String bless;
+  final int originalCount;
 
   Content({
     required this.id,
     required this.zekr,
     required this.repeat,
     required this.bless,
+    required this.originalCount,
   });
 
   Content copyWith({
@@ -60,12 +73,14 @@ class Content {
     String? zekr,
     int? repeat,
     String? bless,
+    int? originalCount,
   }) =>
       Content(
         id: id ?? this.id,
         zekr: zekr ?? this.zekr,
         repeat: repeat ?? this.repeat,
         bless: bless ?? this.bless,
+        originalCount: originalCount ?? this.originalCount,
       );
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
@@ -73,6 +88,7 @@ class Content {
         zekr: json["zekr"],
         repeat: json["repeat"],
         bless: json["bless"],
+        originalCount: json["repeat"],
       );
 
   Map<String, dynamic> toJson() => {

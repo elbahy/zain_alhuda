@@ -7,9 +7,11 @@ class AzkarContentItem extends StatelessWidget {
     super.key,
     required this.zakr,
     required this.repeat,
+    required this.orginalCount,
   });
   final String zakr;
   final int repeat;
+  final int orginalCount;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -41,14 +43,17 @@ class AzkarContentItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('التكرار', style: AppStyles.elmisri400Size30.copyWith(fontSize: 20), textAlign: TextAlign.center),
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 21,
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundColor: AppColors.thirdColor,
-                    child: Text('$repeat', style: AppStyles.elmisri400Size30.copyWith(fontSize: 20)),
-                  ),
+                Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    CircularProgressIndicator(
+                      strokeWidth: 2,
+                      value: repeat / orginalCount,
+                      color: AppColors.secondColor,
+                      backgroundColor: AppColors.thirdColor,
+                    ),
+                    Center(child: Text("$repeat", style: AppStyles.elmisri400Size30.copyWith(fontSize: 20))),
+                  ],
                 ),
                 const SizedBox(width: 10),
                 Text('|', style: AppStyles.elmisri400Size30.copyWith(fontSize: 20)),

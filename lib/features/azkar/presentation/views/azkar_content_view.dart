@@ -60,6 +60,7 @@ class _AzkarContentViewState extends State<AzkarContentView> {
                           child: AzkarContentItem(
                             repeat: removedItem.repeat,
                             zakr: removedItem.zekr,
+                            orginalCount: removedItem.originalCount,
                           ),
                         ),
                       );
@@ -79,6 +80,7 @@ class _AzkarContentViewState extends State<AzkarContentView> {
                 child: AzkarContentItem(
                   repeat: count,
                   zakr: azkarItem.zekr,
+                  orginalCount: azkarItem.originalCount,
                 ),
               ),
             );
