@@ -4,6 +4,7 @@ import 'package:zain_alhuda/core/widgets/app_custom_bottom_nav_bar.dart';
 import 'package:zain_alhuda/features/azkar/data/models/azkar_model.dart';
 import 'package:zain_alhuda/features/azkar/presentation/cubit/azkar_cubit.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_content_view.dart';
+import 'package:zain_alhuda/features/azkar/presentation/views/azkar_result_view.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_view.dart';
 import 'package:zain_alhuda/features/home/presentation/cubit/home_cubit.dart';
 import 'package:zain_alhuda/features/home/presentation/views/home_view.dart';
@@ -57,6 +58,10 @@ abstract class AppRouter {
     GoRoute(
       path: '/azkarContent',
       builder: (context, state) => AzkarContentView(data: state.extra as Datum),
+    ),
+    GoRoute(
+      path: '/azkarResult',
+      builder: (context, state) => AzkarResult(count: state.extra as int),
     ),
     GoRoute(
       path: '/quran',

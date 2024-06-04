@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zain_alhuda/core/functions/custome_navigate.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
-import 'package:zain_alhuda/core/utils/app_styles.dart';
 import 'package:zain_alhuda/features/azkar/data/models/azkar_model.dart';
 import 'package:zain_alhuda/features/azkar/presentation/cubit/azkar_cubit.dart';
 import 'package:zain_alhuda/features/azkar/presentation/cubit/azkar_state.dart';
@@ -41,7 +40,7 @@ class AzkarView extends StatelessWidget {
                   return AzkarTypeItem(
                     azkarType: azkarModel.data[index].title,
                     onTap: () {
-                      CustomeNavigate.navigate(context, '/azkarContent', extra: azkarModel.data[index]);
+                      CustomeNavigate.replace(context, '/azkarContent', extra: azkarModel.data[index]);
                     },
                   );
                 },
