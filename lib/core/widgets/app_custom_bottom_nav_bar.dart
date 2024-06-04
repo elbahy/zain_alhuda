@@ -5,12 +5,14 @@ import 'package:svg_flutter/svg.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
+import 'package:zain_alhuda/features/azkar/presentation/cubit/azkar_cubit.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_view.dart';
 import 'package:zain_alhuda/features/home/presentation/cubit/home_cubit.dart';
 import 'package:zain_alhuda/features/home/presentation/views/home_view.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/views/prayer_times_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
+import 'package:zain_alhuda/features/supplications/presentation/views/supplications_view.dart';
 
 class AppBottomNavBar extends StatelessWidget {
   const AppBottomNavBar({super.key});
@@ -21,7 +23,7 @@ class AppBottomNavBar extends StatelessWidget {
     List<PersistentTabConfig> tabs = [
       PersistentTabConfig(
         screen: BlocProvider(
-          create: (context) => QuranCubit()..getQuran(),
+          create: (context) => QuranCubit()..getSurahList(),
           child: const SurahView(),
         ),
         item: ItemConfig(
@@ -32,7 +34,10 @@ class AppBottomNavBar extends StatelessWidget {
         ),
       ),
       PersistentTabConfig(
-        screen: const AzkarView(),
+        screen: BlocProvider(
+          create: (context) => AzkarCubit()..getAzkar(),
+          child: const AzkarView(),
+        ),
         item: ItemConfig(
           icon: const Icon(Icons.handshake),
           title: "الأذكار",
@@ -73,7 +78,7 @@ class AppBottomNavBar extends StatelessWidget {
         ),
       ),
       PersistentTabConfig(
-        screen: const AzkarView(),
+        screen: const SupplicationsView(),
         item: ItemConfig(
           icon: const Icon(Icons.handshake),
           title: "الأدعية",
