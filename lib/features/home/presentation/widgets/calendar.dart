@@ -29,12 +29,6 @@ class _CalendarState extends State<Calendar> {
 
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) async {
-        if (state is GetAdhanTodayFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.errorMsg),
-          ));
-        }
-
         if (state is GetAdhanTodaySuccess) {
           timings = state.adhanToday.data.timings;
           hijri = state.adhanToday.data.date.hijri;
@@ -92,14 +86,26 @@ class _CalendarState extends State<Calendar> {
                         timings != null ? PrayerTimeList(timings: timings!, nextPraying: cubit.nextPraying) : const SizedBox(),
                       ],
                     )
-                  : const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(
-                          color: AppColors.secondColor,
+                  : state is GetAdhanTodayFailure
+                      ? Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          const Icon(
+                            Icons.wifi_off_sharp,
+                            color: AppColors.secondColor,
+                            size: 35,
+                          ),
+                          Text(
+                            'يرجى الاتصال بالانترنت , لعرض مواعيد الصلاة',
+                            style: AppStyles.elmisri500Size16.copyWith(color: AppColors.secondColor),
+                          ),
+                        ])
+                      : const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(
+                              color: AppColors.secondColor,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
             ),
             const SizedBox(height: 20),
           ],
