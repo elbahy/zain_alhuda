@@ -9,6 +9,7 @@ import 'package:zain_alhuda/features/azkar/presentation/cubit/azkar_cubit.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_view.dart';
 import 'package:zain_alhuda/features/home/presentation/cubit/home_cubit.dart';
 import 'package:zain_alhuda/features/home/presentation/views/home_view.dart';
+import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_cubit.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/views/prayer_times_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
@@ -46,8 +47,15 @@ class AppBottomNavBar extends StatelessWidget {
         ),
       ),
       PersistentTabConfig(
-        screen: BlocProvider(
-          create: (context) => HomeCubit()..getLocation(),
+        screen: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => HomeCubit(),
+            ),
+            BlocProvider(
+              create: (context) => PrayerTimesCubit()..getLocation(),
+            ),
+          ],
           child: const HomeView(),
         ),
         item: ItemConfig(

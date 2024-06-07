@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zain_alhuda/features/home/data/models/adhan_model.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/prayer_time_list_item.dart';
+import 'package:zain_alhuda/features/prayer_times/data/models/today_adhan_model.dart';
 
 class PrayerTimeList extends StatelessWidget {
   const PrayerTimeList({

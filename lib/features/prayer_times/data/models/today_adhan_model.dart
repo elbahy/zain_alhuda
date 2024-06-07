@@ -1,5 +1,5 @@
-class AdhanModel {
-  AdhanModel({
+class TodayAdhanModel {
+  TodayAdhanModel({
     required this.code,
     required this.status,
     required this.data,
@@ -9,8 +9,8 @@ class AdhanModel {
   final String status;
   final Data data;
 
-  factory AdhanModel.fromJson(Map<String, dynamic> json) {
-    return AdhanModel(
+  factory TodayAdhanModel.fromJson(Map<String, dynamic> json) {
+    return TodayAdhanModel(
       code: json["code"] ?? 0,
       status: json["status"] ?? '',
       data: Data.fromJson(json["data"] ?? {}),

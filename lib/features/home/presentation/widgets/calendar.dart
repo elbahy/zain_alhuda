@@ -4,11 +4,11 @@ import 'package:zain_alhuda/core/functions/convert_prayer_name_to_arabic.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
-import 'package:zain_alhuda/features/home/data/models/adhan_model.dart';
-import 'package:zain_alhuda/features/home/presentation/cubit/home_cubit.dart';
-import 'package:zain_alhuda/features/home/presentation/cubit/home_state.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/next_praying_timer.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/prayer_time_list.dart';
+import 'package:zain_alhuda/features/prayer_times/data/models/today_adhan_model.dart';
+import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_cubit.dart';
+import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_state.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({
@@ -25,13 +25,13 @@ class _CalendarState extends State<Calendar> {
     Timings? timings;
     Hijri? hijri;
 
-    HomeCubit cubit = BlocProvider.of<HomeCubit>(context);
+    PrayerTimesCubit cubit = BlocProvider.of<PrayerTimesCubit>(context);
 
-    return BlocConsumer<HomeCubit, HomeState>(
+    return BlocConsumer<PrayerTimesCubit, PrayerTimesState>(
       listener: (context, state) async {
         if (state is GetAdhanTodaySuccess) {
-          timings = state.adhanToday.data.timings;
-          hijri = state.adhanToday.data.date.hijri;
+          timings = state.todayAdhanToday.data.timings;
+          hijri = state.todayAdhanToday.data.date.hijri;
         }
       },
       builder: (context, state) {
