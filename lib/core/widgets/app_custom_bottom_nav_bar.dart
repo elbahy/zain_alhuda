@@ -53,7 +53,7 @@ class AppBottomNavBar extends StatelessWidget {
               create: (context) => HomeCubit(),
             ),
             BlocProvider(
-              create: (context) => PrayerTimesCubit()..getLocation(),
+              create: (context) => PrayerTimesCubit()..getAdhanToday(),
             ),
           ],
           child: const HomeView(),
@@ -69,7 +69,10 @@ class AppBottomNavBar extends StatelessWidget {
         ),
       ),
       PersistentTabConfig(
-        screen: const PrayerTimesView(),
+        screen: BlocProvider(
+          create: (context) => PrayerTimesCubit()..getAdhanYear(DateTime.now().year.toString()),
+          child: const PrayerTimesView(),
+        ),
         item: ItemConfig(
           icon: SvgPicture.asset(
             Assets.assetsImagesQuranIcon,

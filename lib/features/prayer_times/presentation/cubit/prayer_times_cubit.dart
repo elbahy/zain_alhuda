@@ -2,13 +2,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:zain_alhuda/core/api/api_consumer.dart';
 import 'package:zain_alhuda/features/prayer_times/data/models/today_adhan_model.dart';
+import 'package:zain_alhuda/features/prayer_times/data/models/year_adhan_model.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_state.dart';
 
 class PrayerTimesCubit extends Cubit<PrayerTimesState> {
   PrayerTimesCubit() : super(PrayerTimesInitial());
 
-  late String nextPraying = '';
-  void getLocation() async {
+  String nextPraying = '';
+  late double latitude;
+  late double longitude;
+  Future<void> getLocation() async {
     emit(GetLocationLoading());
     bool serviceEnabled;
     LocationPermission permission;
@@ -31,15 +34,18 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     }
     await Geolocator.getCurrentPosition().then((value) {
       emit(GetLocationSuccess(latitude: value.altitude, longitude: value.latitude));
-      getAdhanToday(value.latitude, value.longitude);
+
+      latitude = value.latitude;
+      longitude = value.longitude;
     });
   }
 
-  Future<void> getAdhanToday(double latitude, double longitude) async {
+  Future<void> getAdhanToday() async {
     TodayAdhanModel todayAdhanModel;
+    await getLocation();
     emit(GetAdhanTodayLoading());
     try {
-      await ApiConsumer().get(path: 'timings/today?latitude=$latitude&longitude=$longitude&method=5').then((value) {
+      await ApiConsumer().get(path: 'timings/today?latitude=$latitude&longitude=$longitude&method=5&adjustment=1').then((value) {
         todayAdhanModel = TodayAdhanModel.fromJson(value);
         emit(GetAdhanTodaySuccess(todayAdhanToday: todayAdhanModel));
         getNextPrayer(todayAdhanModel.data.timings);
@@ -49,7 +55,21 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     }
   }
 
-  getNextPrayer(Timings timings) {
+  Future<void> getAdhanYear(String year) async {
+    YearAdhanModel yearAdhanModel;
+    await getLocation();
+    emit(PrayerTimesLoading());
+    try {
+      await ApiConsumer().get(path: 'calandar/$year?latitude=$latitude&longitude=$longitude&method=5').then((value) {
+        yearAdhanModel = YearAdhanModel.fromJson(value);
+        emit(PrayerTimesLoaded(yearAdhanModel: yearAdhanModel));
+      });
+    } catch (e) {
+      emit(PrayerTimesError(message: e.toString()));
+    }
+  }
+
+  getNextPrayer(timings) {
     DateTime currentTime = DateTime.now();
     DateTime nextPrayerTime = DateTime(9999);
 

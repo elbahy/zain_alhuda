@@ -35,7 +35,7 @@ abstract class AppRouter {
             create: (context) => HomeCubit(),
           ),
           BlocProvider(
-            create: (context) => PrayerTimesCubit()..getLocation(),
+            create: (context) => PrayerTimesCubit()..getAdhanToday(),
           )
         ],
         child: const HomeView(),
@@ -54,7 +54,10 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: '/prayerTimes',
-      builder: (context, state) => const PrayerTimesView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => PrayerTimesCubit()..getAdhanYear(DateTime.now().year.toString()),
+        child: const PrayerTimesView(),
+      ),
     ),
     GoRoute(
       path: '/azkar',

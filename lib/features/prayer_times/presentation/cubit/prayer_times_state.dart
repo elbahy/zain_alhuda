@@ -1,4 +1,5 @@
 import 'package:zain_alhuda/features/prayer_times/data/models/today_adhan_model.dart';
+import 'package:zain_alhuda/features/prayer_times/data/models/year_adhan_model.dart';
 
 abstract class PrayerTimesState {}
 
@@ -34,9 +35,9 @@ class GetAdhanTodayFailure extends PrayerTimesState {
 class PrayerTimesLoading extends PrayerTimesState {}
 
 class PrayerTimesLoaded extends PrayerTimesState {
-  final TodayAdhanModel todayAdhanModel;
+  final YearAdhanModel yearAdhanModel;
 
-  PrayerTimesLoaded({required this.todayAdhanModel});
+  PrayerTimesLoaded({required this.yearAdhanModel});
 }
 
 class PrayerTimesError extends PrayerTimesState {

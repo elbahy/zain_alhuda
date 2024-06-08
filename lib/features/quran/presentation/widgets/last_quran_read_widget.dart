@@ -46,20 +46,20 @@ class _LastQuranReadWidgetState extends State<LastQuranReadWidget> {
             ),
             const SizedBox(height: 10),
             Text(
-              convertSurahNumberToName(getIt<CacheHelper>().getData(key: 'lastSurahNum')),
+              convertSurahNumberToName(getIt<CacheHelper>().getData(key: 'lastSurahNum') ?? 1),
               textDirection: TextDirection.ltr,
               textAlign: TextAlign.right,
               style: AppStyles.quranSurah500Size80.copyWith(color: Colors.white, fontSize: 120),
             ),
             Text(
-              ' الآية رقم ${convertNumberToArabic(getIt<CacheHelper>().getData(key: 'lastAyahNum'))}',
+              ' الآية رقم ${convertNumberToArabic(getIt<CacheHelper>().getData(key: 'lastAyahNum') ?? 1)}',
               style: AppStyles.elmisri500Size16.copyWith(color: Colors.white),
             ),
           ]),
           ElevatedButton.icon(
               style: ElevatedButton.styleFrom(backgroundColor: AppColors.secondColor),
               onPressed: () {
-                CustomeNavigate.navigate(context, '/quran', extra: getIt<CacheHelper>().getData(key: 'lastQuranPage'), then: (value) {
+                CustomeNavigate.navigate(context, '/quran', extra: getIt<CacheHelper>().getData(key: 'lastQuranPage') ?? 1, then: (value) {
                   setState(() {});
                 });
               },

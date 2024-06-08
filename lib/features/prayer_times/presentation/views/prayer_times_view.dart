@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:zain_alhuda/core/widgets/app_bar_space.dart';
 
 class PrayerTimesView extends StatelessWidget {

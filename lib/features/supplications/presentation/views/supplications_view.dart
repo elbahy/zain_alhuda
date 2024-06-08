@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zain_alhuda/core/utils/app_assets.dart';
-import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/widgets/app_bar_space.dart';
 
 class SupplicationsView extends StatelessWidget {

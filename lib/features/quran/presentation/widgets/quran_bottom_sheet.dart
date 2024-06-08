@@ -39,7 +39,7 @@ class QuranBottomSheet extends StatelessWidget {
                       },
                       icon: const Icon(Icons.bookmark, color: AppColors.primaryColor),
                       label: Text('انتقال الى العلامة', style: AppStyles.elmisri500Size16.copyWith(color: AppColors.primaryColor, fontSize: 14)))
-                  : const SizedBox(),
+                  : TextButton.icon(onPressed: () {}, icon: const Icon(Icons.bookmark, color: AppColors.primaryColor), label: Text('لا يوجد علامة', style: AppStyles.elmisri500Size16.copyWith(color: AppColors.primaryColor, fontSize: 14))),
               TextButton.icon(
                   onPressed: () {
                     goToPage(context, goToPageController);
