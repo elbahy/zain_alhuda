@@ -8,7 +8,9 @@ import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_time
 class PrayerTimesCubit extends Cubit<PrayerTimesState> {
   PrayerTimesCubit() : super(PrayerTimesInitial());
 
+  static PrayerTimesCubit get(context) => BlocProvider.of(context);
   String nextPraying = '';
+  String selectedMonth = DateTime.now().month.toString().padLeft(2, '0');
   late double latitude;
   late double longitude;
   Future<void> getLocation() async {
@@ -60,7 +62,7 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     await getLocation();
     emit(PrayerTimesLoading());
     try {
-      await ApiConsumer().get(path: 'calandar/$year?latitude=$latitude&longitude=$longitude&method=5').then((value) {
+      await ApiConsumer().get(path: 'calendar/$year?latitude=$latitude&longitude=$longitude&method=5&adjustment=1').then((value) {
         yearAdhanModel = YearAdhanModel.fromJson(value);
         emit(PrayerTimesLoaded(yearAdhanModel: yearAdhanModel));
       });
