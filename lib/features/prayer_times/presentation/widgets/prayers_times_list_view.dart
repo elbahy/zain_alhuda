@@ -25,7 +25,7 @@ class PrayersTimesList extends StatelessWidget {
           itemCount: prayers.length,
           itemBuilder: (context, index2) {
             return Container(
-              margin: const EdgeInsets.all(8),
+              margin: const EdgeInsets.all(4),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
