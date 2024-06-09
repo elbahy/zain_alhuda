@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:zain_alhuda/core/api/api_consumer.dart';
+import 'package:zain_alhuda/core/functions/get_month_adhan_data.dart';
 import 'package:zain_alhuda/features/prayer_times/data/models/today_adhan_model.dart';
 import 'package:zain_alhuda/features/prayer_times/data/models/year_adhan_model.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_state.dart';
@@ -11,8 +12,22 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
   static PrayerTimesCubit get(context) => BlocProvider.of(context);
   String nextPraying = '';
   String selectedMonth = DateTime.now().month.toString().padLeft(2, '0');
+  int selectedDay = DateTime.now().day;
   late double latitude;
   late double longitude;
+  late TodayAdhanModel todayAdhanModel;
+  late YearAdhanModel yearAdhanModel;
+
+  void changeSelectedMonth(String month) {
+    selectedMonth = month;
+    emit(PrayerTimesLoaded(yearAdhanModel: yearAdhanModel));
+  }
+
+  void changeSelectedDay(int day) {
+    selectedDay = day;
+    emit(PrayerTimesLoaded(yearAdhanModel: yearAdhanModel));
+  }
+
   Future<void> getLocation() async {
     emit(GetLocationLoading());
     bool serviceEnabled;
@@ -43,7 +58,6 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
   }
 
   Future<void> getAdhanToday() async {
-    TodayAdhanModel todayAdhanModel;
     await getLocation();
     emit(GetAdhanTodayLoading());
     try {
@@ -58,13 +72,13 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
   }
 
   Future<void> getAdhanYear(String year) async {
-    YearAdhanModel yearAdhanModel;
     await getLocation();
     emit(PrayerTimesLoading());
     try {
       await ApiConsumer().get(path: 'calendar/$year?latitude=$latitude&longitude=$longitude&method=5&adjustment=1').then((value) {
         yearAdhanModel = YearAdhanModel.fromJson(value);
         emit(PrayerTimesLoaded(yearAdhanModel: yearAdhanModel));
+        // getNextPrayer(getAdhanDataForCurrentMonth(yearAdhanModel.data, int.parse(selectedMonth))[1].timings);
       });
     } catch (e) {
       emit(PrayerTimesError(message: e.toString()));
