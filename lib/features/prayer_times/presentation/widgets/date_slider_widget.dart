@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zain_alhuda/core/utils/app_styles.dart';
 
 class DateSlider extends StatelessWidget {
   const DateSlider({
@@ -34,6 +35,7 @@ class DateSlider extends StatelessWidget {
                 return Center(
                   child: Text(
                     '${adhanDataMonth[index].date.hijri.weekday.ar} ${adhanDataMonth[index].date.gregorian.date} ',
+                    style: AppStyles.elmisri700Size18,
                   ),
                 );
               },

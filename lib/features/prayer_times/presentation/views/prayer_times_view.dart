@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zain_alhuda/core/functions/get_month_adhan_data.dart';
-import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/widgets/app_bar_space.dart';
 
 import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_cubit.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_state.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/widgets/date_slider_widget.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/widgets/month_selector.dart';
+import 'package:zain_alhuda/features/prayer_times/presentation/widgets/prayers_times_list_view.dart';
 
 class PrayerTimesView extends StatelessWidget {
   const PrayerTimesView({super.key});
@@ -60,40 +60,18 @@ class PrayerTimesView extends StatelessWidget {
                               ),
                           itemCount: MonthSelector.months.length),
                     ),
+                    const SizedBox(height: 20),
                     DateSlider(
                       pageController: pageController,
                       pageController2: pageController2,
                       adhanDataMonth: adhanDataMonth,
                     ),
                     Expanded(
-                      child: PageView.builder(
-                        controller: pageController,
-                        itemBuilder: (context, index) {
-                          return ListView.builder(
-                            itemCount: prayers.length,
-                            itemBuilder: (context, index2) {
-                              return ListTile(
-                                // selected: PrayerTimesCubit.get(context).nextPraying == prayers[index2]['en'],
-                                // selectedColor: Colors.black,
-                                leading: Icon(prayers[index2]['icon'], color: AppColors.primaryColor),
-                                title: Text(
-                                  prayers[index2]['ar'],
-                                  style: const TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
-                                ),
-                                trailing: Text(
-                                  adhanDataMonth[index].timings.toJson()[prayers[index2]['en']] as String,
-                                  style: const TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
-                                ),
-                                tileColor: AppColors.secondColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                              );
-                            },
-                          );
-                        },
-                        onPageChanged: (value) => pageController2.animateToPage(value, duration: const Duration(milliseconds: 500), curve: Curves.fastLinearToSlowEaseIn),
+                      child: PrayersTimesList(
+                        pageController: pageController,
+                        prayers: prayers,
+                        adhanDataMonth: adhanDataMonth,
+                        pageController2: pageController2,
                       ),
                     )
                   ],

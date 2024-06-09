@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:zain_alhuda/core/api/api_consumer.dart';
-import 'package:zain_alhuda/core/functions/get_month_adhan_data.dart';
 import 'package:zain_alhuda/features/prayer_times/data/models/today_adhan_model.dart';
 import 'package:zain_alhuda/features/prayer_times/data/models/year_adhan_model.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_state.dart';
