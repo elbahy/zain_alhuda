@@ -39,21 +39,24 @@ class _LastQuranReadWidgetState extends State<LastQuranReadWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Text(
               'التلاوة الأخيرة',
-              style: AppStyles.elmisri700Size18.copyWith(color: Colors.white),
+              style: AppStyles.elmisri700Size18.copyWith(color: Colors.white, fontSize: 16),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 4),
             Text(
               convertSurahNumberToName(getIt<CacheHelper>().getData(key: 'lastSurahNum') ?? 1),
               textDirection: TextDirection.ltr,
               textAlign: TextAlign.right,
-              style: AppStyles.quranSurah500Size80.copyWith(color: Colors.white, fontSize: 120),
+              style: AppStyles.quranSurah500Size80.copyWith(
+                color: Colors.white,
+                fontSize: 100,
+              ),
             ),
             Text(
               ' الآية رقم ${convertNumberToArabic(getIt<CacheHelper>().getData(key: 'lastAyahNum') ?? 1)}',
-              style: AppStyles.elmisri500Size16.copyWith(color: Colors.white),
+              style: AppStyles.elmisri500Size16.copyWith(color: Colors.white, fontSize: 12),
             ),
           ]),
           ElevatedButton.icon(
