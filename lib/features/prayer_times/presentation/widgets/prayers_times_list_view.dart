@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zain_alhuda/core/functions/convert_time_to_12_hour.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
 
@@ -37,7 +38,7 @@ class PrayersTimesList extends StatelessWidget {
                   style: AppStyles.elmisri700Size18,
                 ),
                 trailing: Text(
-                  adhanDataMonth[index].timings.toJson()[prayers[index2]['en']] as String,
+                  convertTimeTo12HourWithPeriod(adhanDataMonth[index].timings.toJson()[prayers[index2]['en']].toString()),
                   style: AppStyles.elmisri700Size18,
                 ),
                 tileColor: AppColors.secondColor,
