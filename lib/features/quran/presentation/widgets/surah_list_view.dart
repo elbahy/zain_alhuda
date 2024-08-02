@@ -89,7 +89,7 @@ class SurahListView extends StatelessWidget {
                   'عدد اياتها  ${surahData[index].numberOfAyahs.toString()}',
                   style: AppStyles.elmisri500Size16.copyWith(color: AppColors.thirdColor, fontSize: 12),
                 ),
-                trailing: surahData[index].revelationType == 'مكية'
+                trailing: surahData[index].revelationType == 'Meccan'
                     ? SvgPicture.asset(
                         Assets.assetsImagesKaaba,
                         width: 40,

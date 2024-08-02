@@ -17,7 +17,7 @@ class OnboradingBody extends StatelessWidget {
     return Column(
       children: [
         AspectRatio(
-          aspectRatio: 1,
+          aspectRatio: 1.25,
           child: Image.asset(onboardingContentList[index].imagePath),
         ),
         Text(
