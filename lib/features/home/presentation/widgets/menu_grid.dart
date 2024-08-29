@@ -24,7 +24,7 @@ class MenuGrid extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MenuItem(icon: Assets.assetsImagesMosqueIcon, text: S.of(context).prayertimes, routName: '/prayerTimes'),
-            MenuItem(icon: Assets.assetsImagesDoaaIcon, text: S.of(context).supplications, routName: '/supplications'),
+            MenuItem(icon: Assets.assetsImagesDoaaIcon, text: S.of(context).supplications, routName: '/reciters'),
           ],
         ),
       ],

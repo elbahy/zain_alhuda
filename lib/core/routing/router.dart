@@ -15,7 +15,7 @@ import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/quran_view.dart';
 import 'package:zain_alhuda/features/splash/presentation/views/splash_view.dart';
-import 'package:zain_alhuda/features/supplications/presentation/views/supplications_view.dart';
+import 'package:zain_alhuda/features/reciters/presentation/views/reciters_view.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(routes: [
@@ -49,8 +49,8 @@ abstract class AppRouter {
       ),
     ),
     GoRoute(
-      path: '/supplications',
-      builder: (context, state) => const SupplicationsView(),
+      path: '/reciters',
+      builder: (context, state) => const RecitersView(),
     ),
     GoRoute(
       path: '/prayerTimes',

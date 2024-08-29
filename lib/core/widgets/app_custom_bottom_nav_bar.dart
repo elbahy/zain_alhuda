@@ -13,7 +13,7 @@ import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_time
 import 'package:zain_alhuda/features/prayer_times/presentation/views/prayer_times_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
-import 'package:zain_alhuda/features/supplications/presentation/views/supplications_view.dart';
+import 'package:zain_alhuda/features/reciters/presentation/views/reciters_view.dart';
 
 class AppBottomNavBar extends StatelessWidget {
   const AppBottomNavBar({super.key});
@@ -89,7 +89,7 @@ class AppBottomNavBar extends StatelessWidget {
         ),
       ),
       PersistentTabConfig(
-        screen: const SupplicationsView(),
+        screen: const RecitersView(),
         item: ItemConfig(
           icon: const Icon(Icons.handshake),
           title: "الأدعية",

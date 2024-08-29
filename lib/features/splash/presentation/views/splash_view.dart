@@ -16,7 +16,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
       bool isVisted = getIt<CacheHelper>().getData(key: 'isOnBoardingVisted') ?? false;
-      isVisted ? CustomeNavigate.replace(context, '/bottomNavBar') : CustomeNavigate.replace(context, '/onBoarding');
+      isVisted ? CustomeNavigate.replace(context, '/home') : CustomeNavigate.replace(context, '/onBoarding');
     });
     super.initState();
   }
