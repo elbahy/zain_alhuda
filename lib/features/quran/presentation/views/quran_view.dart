@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
 import 'package:zain_alhuda/core/functions/convert_number_to_arabic.dart';
 import 'package:zain_alhuda/core/services/service_locator.dart';
@@ -22,7 +22,7 @@ class QuranView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Wakelock.enable();
+    WakelockPlus.enable();
     // تغيير لون الخلفية في الشريط العلوي
     // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     //   statusBarColor: AppColors.primaryColor, // لون الخلفية الجديد
@@ -43,16 +43,26 @@ class QuranView extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    decoration: const BoxDecoration(gradient: LinearGradient(colors: [AppColors.primaryColor, AppColors.thirdColor])),
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                      AppColors.primaryColor,
+                      AppColors.thirdColor
+                    ])),
                     child: PageView.builder(
                       controller: PageController(initialPage: page - 1),
                       itemBuilder: (_, index) {
                         List<Datum> quranData = state.quranModel.data;
-                        Datum suraName = quranData.firstWhere((element) => element.ayahs.any((Ayah) => Ayah.page == index + 1));
-                        Ayah ayah = suraName.ayahs.firstWhere((element) => element.page == index + 1);
-                        getIt<CacheHelper>().saveData(key: 'lastQuranPage', value: index + 1);
-                        getIt<CacheHelper>().saveData(key: 'lastSurahNum', value: suraName.number);
-                        getIt<CacheHelper>().saveData(key: 'lastAyahNum', value: ayah.numberInSurah);
+                        Datum suraName = quranData.firstWhere((element) =>
+                            element.ayahs
+                                .any((Ayah) => Ayah.page == index + 1));
+                        Ayah ayah = suraName.ayahs
+                            .firstWhere((element) => element.page == index + 1);
+                        getIt<CacheHelper>()
+                            .saveData(key: 'lastQuranPage', value: index + 1);
+                        getIt<CacheHelper>().saveData(
+                            key: 'lastSurahNum', value: suraName.number);
+                        getIt<CacheHelper>().saveData(
+                            key: 'lastAyahNum', value: ayah.numberInSurah);
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -76,11 +86,14 @@ class QuranView extends StatelessWidget {
                                 children: [
                                   Image.asset(
                                     'assets/images/page${index + 1}.png',
-                                    height: MediaQuery.of(context).size.height * .85,
+                                    height: MediaQuery.of(context).size.height *
+                                        .85,
                                   ),
                                   Text(
                                     convertNumberToArabic(index + 1),
-                                    style: AppStyles.elmisri700Size18.copyWith(fontSize: 16, color: AppColors.primaryColor),
+                                    style: AppStyles.elmisri700Size18.copyWith(
+                                        fontSize: 16,
+                                        color: AppColors.primaryColor),
                                   ),
                                 ],
                               ),
