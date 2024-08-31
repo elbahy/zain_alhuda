@@ -15,16 +15,28 @@ class MenuGrid extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            MenuItem(icon: Assets.assetsImagesQuranIcon, text: S.of(context).Quran, routName: '/surahList'),
-            MenuItem(icon: Assets.assetsImagesEzkarIcon, text: S.of(context).azkar, routName: '/azkar'),
+            MenuItem(
+                icon: Assets.assetsImagesQuranIcon,
+                text: S.of(context).Quran,
+                routName: '/surahList'),
+            MenuItem(
+                icon: Assets.assetsImagesEzkarIcon,
+                text: S.of(context).azkar,
+                routName: '/azkar'),
           ],
         ),
         const SizedBox(height: 18),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            MenuItem(icon: Assets.assetsImagesMosqueIcon, text: S.of(context).prayertimes, routName: '/prayerTimes'),
-            MenuItem(icon: Assets.assetsImagesDoaaIcon, text: S.of(context).supplications, routName: '/reciters'),
+            MenuItem(
+                icon: Assets.assetsImagesMosqueIcon,
+                text: S.of(context).prayertimes,
+                routName: '/prayerTimes'),
+            MenuItem(
+                icon: Assets.assetsImagesRecitersLogo,
+                text: S.of(context).reciters,
+                routName: '/reciters'),
           ],
         ),
       ],

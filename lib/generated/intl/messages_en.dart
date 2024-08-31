@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "audios": MessageLookupByLibrary.simpleMessage("Audios"),
         "azkar": MessageLookupByLibrary.simpleMessage("الأذكار"),
         "prayertimes": MessageLookupByLibrary.simpleMessage("مواعيد الصلاة"),
+        "reciters": MessageLookupByLibrary.simpleMessage("Reciters"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "supplications": MessageLookupByLibrary.simpleMessage("الأدعية")

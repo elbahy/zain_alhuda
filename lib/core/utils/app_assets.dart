@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
   
@@ -8,6 +9,10 @@ class Assets {
   /// Assets for assetsImagesApplogo
   /// assets/images/applogo.png
   static const String assetsImagesApplogo = "assets/images/applogo.png";
+
+  /// Assets for assetsImagesAzkarBg
+  /// assets/images/azkar_bg.png
+  static const String assetsImagesAzkarBg = "assets/images/azkar_bg.png";
 
   /// Assets for assetsImagesDoaaIcon
   /// assets/images/doaa-icon.svg
@@ -2476,6 +2481,10 @@ class Assets {
   /// Assets for assetsImagesQuranIcon
   /// assets/images/quran_icon.svg
   static const String assetsImagesQuranIcon = "assets/images/quran_icon.svg";
+
+  /// Assets for assetsImagesRecitersLogo
+  /// assets/images/reciters_logo.svg
+  static const String assetsImagesRecitersLogo = "assets/images/reciters_logo.svg";
 
   /// Assets for assetsImagesSurahNum
   /// assets/images/surah_num.svg

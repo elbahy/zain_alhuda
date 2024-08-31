@@ -14,8 +14,10 @@ class PrayerTimesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PageController pageController = PageController(initialPage: PrayerTimesCubit.get(context).selectedDay - 1);
-    PageController pageController2 = PageController(initialPage: PrayerTimesCubit.get(context).selectedDay - 1);
+    PageController pageController = PageController(
+        initialPage: PrayerTimesCubit.get(context).selectedDay - 1);
+    PageController pageController2 = PageController(
+        initialPage: PrayerTimesCubit.get(context).selectedDay - 1);
     ScrollController scrollController = ScrollController();
 
     final List<Map<String, dynamic>> prayers = [
@@ -35,9 +37,12 @@ class PrayerTimesView extends StatelessWidget {
         child: BlocBuilder<PrayerTimesCubit, PrayerTimesState>(
           builder: (context, state) {
             if (state is PrayerTimesLoaded) {
-              List<dynamic> adhanDataMonth = getAdhanDataForCurrentMonth(state.yearAdhanModel.data, int.parse(PrayerTimesCubit.get(context).selectedMonth));
+              List<dynamic> adhanDataMonth = getAdhanDataForCurrentMonth(
+                  state.yearAdhanModel.data,
+                  int.parse(PrayerTimesCubit.get(context).selectedMonth));
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -48,9 +53,12 @@ class PrayerTimesView extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return MonthSelector(
-                              monthNo: MonthSelector.months[index]['no'] as String,
-                              monthAr: MonthSelector.months[index]['ar'] as String,
-                              selectedMonth: PrayerTimesCubit.get(context).selectedMonth,
+                              monthNo:
+                                  MonthSelector.months[index]['no'] as String,
+                              monthAr:
+                                  MonthSelector.months[index]['ar'] as String,
+                              selectedMonth:
+                                  PrayerTimesCubit.get(context).selectedMonth,
                               pageController1: pageController,
                               pageController2: pageController2,
                             );
@@ -66,6 +74,7 @@ class PrayerTimesView extends StatelessWidget {
                       pageController2: pageController2,
                       adhanDataMonth: adhanDataMonth,
                     ),
+                    const SizedBox(height: 20),
                     Expanded(
                       child: PrayersTimesList(
                         pageController: pageController,

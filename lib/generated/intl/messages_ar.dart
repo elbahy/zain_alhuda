@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "anerroroccurred": MessageLookupByLibrary.simpleMessage("حدث خطا"),
         "azkar": MessageLookupByLibrary.simpleMessage("الأذكار"),
         "prayertimes": MessageLookupByLibrary.simpleMessage("مواعيد الصلاة"),
+        "reciters": MessageLookupByLibrary.simpleMessage("القراء"),
         "search": MessageLookupByLibrary.simpleMessage("البحث"),
         "supplications": MessageLookupByLibrary.simpleMessage("الأدعية")
       };
