@@ -20,8 +20,12 @@ class DateSlider extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {
-            pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.fastLinearToSlowEaseIn);
-            pageController2.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.fastLinearToSlowEaseIn);
+            pageController.previousPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.fastLinearToSlowEaseIn);
+            pageController2.previousPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.fastLinearToSlowEaseIn);
           },
           icon: const Icon(Icons.arrow_back_ios),
         ),
@@ -39,12 +43,18 @@ class DateSlider extends StatelessWidget {
                   ),
                 );
               },
-              onPageChanged: (value) => pageController.animateToPage(value, duration: const Duration(milliseconds: 500), curve: Curves.fastLinearToSlowEaseIn),
+              onPageChanged: (value) => pageController.animateToPage(value,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.fastLinearToSlowEaseIn),
             )),
         IconButton(
           onPressed: () {
-            pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.fastLinearToSlowEaseIn);
-            pageController2.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.fastLinearToSlowEaseIn);
+            pageController.nextPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.fastLinearToSlowEaseIn);
+            pageController2.nextPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.fastLinearToSlowEaseIn);
           },
           icon: const Icon(Icons.arrow_forward_ios),
         ),

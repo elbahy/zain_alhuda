@@ -21,6 +21,7 @@ class PrayersTimesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageView.builder(
       controller: pageController,
+      itemCount: adhanDataMonth.length,
       itemBuilder: (context, index) {
         return ListView.builder(
           itemCount: prayers.length,
@@ -32,26 +33,33 @@ class PrayersTimesList extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               child: ListTile(
-                leading: Icon(prayers[index2]['icon'], color: AppColors.primaryColor),
+                leading: Icon(prayers[index2]['icon'],
+                    color: AppColors.primaryColor),
                 title: Text(
                   prayers[index2]['ar'],
                   style: AppStyles.elmisri700Size18,
                 ),
                 trailing: Text(
-                  convertTimeTo12HourWithPeriod(adhanDataMonth[index].timings.toJson()[prayers[index2]['en']].toString()),
+                  convertTimeTo12HourWithPeriod(adhanDataMonth[index]
+                      .timings
+                      .toJson()[prayers[index2]['en']]
+                      .toString()),
                   style: AppStyles.elmisri700Size18,
                 ),
                 tileColor: AppColors.secondColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               ),
             );
           },
         );
       },
-      onPageChanged: (value) => pageController2.animateToPage(value, duration: const Duration(milliseconds: 500), curve: Curves.fastLinearToSlowEaseIn),
+      onPageChanged: (value) => pageController2.animateToPage(value,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.fastLinearToSlowEaseIn),
     );
   }
 }
