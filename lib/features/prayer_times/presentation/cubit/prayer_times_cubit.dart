@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:zain_alhuda/core/api/api_consumer.dart';
+import 'package:zain_alhuda/core/api/api_strings.dart';
 import 'package:zain_alhuda/features/prayer_times/data/models/today_adhan_model.dart';
 import 'package:zain_alhuda/features/prayer_times/data/models/year_adhan_model.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_state.dart';
@@ -46,10 +47,13 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     }
     if (permission == LocationPermission.deniedForever) {
       // Permissions are denied forever, handle appropriately.
-      emit(GetLocationFailure(errorMsg: 'Location permissions are permanently denied, we cannot request permissions.'));
+      emit(GetLocationFailure(
+          errorMsg:
+              'Location permissions are permanently denied, we cannot request permissions.'));
     }
     await Geolocator.getCurrentPosition().then((value) {
-      emit(GetLocationSuccess(latitude: value.altitude, longitude: value.latitude));
+      emit(GetLocationSuccess(
+          latitude: value.altitude, longitude: value.latitude));
 
       latitude = value.latitude;
       longitude = value.longitude;
@@ -60,7 +64,11 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     await getLocation();
     emit(GetAdhanTodayLoading());
     try {
-      await ApiConsumer().get(path: 'timings/today?latitude=$latitude&longitude=$longitude&method=5&adjustment=1').then((value) {
+      await ApiConsumer(endpoint: EndPoints.adhanBaseUrl)
+          .get(
+              path:
+                  'timings/today?latitude=$latitude&longitude=$longitude&method=5&adjustment=1')
+          .then((value) {
         todayAdhanModel = TodayAdhanModel.fromJson(value);
         emit(GetAdhanTodaySuccess(todayAdhanToday: todayAdhanModel));
         getNextPrayer(todayAdhanModel.data.timings);
@@ -74,7 +82,11 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     await getLocation();
     emit(PrayerTimesLoading());
     try {
-      await ApiConsumer().get(path: 'calendar/$year?latitude=$latitude&longitude=$longitude&method=5&adjustment=1').then((value) {
+      await ApiConsumer(endpoint: EndPoints.adhanBaseUrl)
+          .get(
+              path:
+                  'calendar/$year?latitude=$latitude&longitude=$longitude&method=5&adjustment=1')
+          .then((value) {
         yearAdhanModel = YearAdhanModel.fromJson(value);
         emit(PrayerTimesLoaded(yearAdhanModel: yearAdhanModel));
         // getNextPrayer(getAdhanDataForCurrentMonth(yearAdhanModel.data, int.parse(selectedMonth))[1].timings);
@@ -101,7 +113,8 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
             int.parse(time.split(":")[1]),
           );
 
-          if (currentTime.isBefore(prayerTime) && prayerTime.isBefore(nextPrayerTime)) {
+          if (currentTime.isBefore(prayerTime) &&
+              prayerTime.isBefore(nextPrayerTime)) {
             nextPrayerTime = prayerTime;
             nextPraying = prayer;
           }

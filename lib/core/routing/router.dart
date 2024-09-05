@@ -14,10 +14,14 @@ import 'package:zain_alhuda/features/prayer_times/presentation/views/prayer_time
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/quran_view.dart';
+import 'package:zain_alhuda/features/reciters/presentation/cubit/reciters_cubit.dart';
+import 'package:zain_alhuda/features/reciters/presentation/data/reciters_repo.dart';
+import 'package:zain_alhuda/features/reciters/presentation/views/play_quran.dart';
 import 'package:zain_alhuda/features/splash/presentation/views/splash_view.dart';
 import 'package:zain_alhuda/features/reciters/presentation/views/reciters_view.dart';
 
 abstract class AppRouter {
+  RecitersRepo recitersRepo = RecitersRepo();
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
@@ -50,12 +54,22 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: '/reciters',
-      builder: (context, state) => const RecitersView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => RecitersCubit(RecitersRepo())..getReciters(),
+        child: const RecitersView(),
+      ),
+    ),
+    GoRoute(
+      path: '/playQuran',
+      builder: (context, state) => PlayQuranView(
+        reciterName: state.extra as String,
+      ),
     ),
     GoRoute(
       path: '/prayerTimes',
       builder: (context, state) => BlocProvider(
-        create: (context) => PrayerTimesCubit()..getAdhanYear(DateTime.now().year.toString()),
+        create: (context) =>
+            PrayerTimesCubit()..getAdhanYear(DateTime.now().year.toString()),
         child: const PrayerTimesView(),
       ),
     ),

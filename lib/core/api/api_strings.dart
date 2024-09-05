@@ -5,7 +5,8 @@ class EndPoints {
   static const String adhanBaseUrl = "https://api.aladhan.com/v1/";
   static const String calendarByAddress = "calendarByAddress";
 
-  static const String recitersBaseUrl = "https://www.mp3quran.net/api/v3/reciters?language=ar";
+  static const String recitersBaseUrl =
+      "https://www.mp3quran.net/api/v3/reciters?language=ar";
 }
 
 class ApiStrings {

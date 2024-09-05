@@ -1,20 +1,19 @@
-
- import 'package:zain_alhuda/features/reciters/presentation/data/reciters_model.dart';
+import 'package:zain_alhuda/features/reciters/presentation/data/reciters_model.dart';
 
 abstract class RecitersState {}
 
 final class RecitersInitial extends RecitersState {}
 
-class GetRecitersLoading extends RecitersState{}
-class GetRecitersSuccess extends RecitersState{
-  final RecitersModel recitersModel;
+class GetRecitersLoading extends RecitersState {}
 
-  GetRecitersSuccess({required this.recitersModel});
+class GetRecitersSuccess extends RecitersState {
+  final List<RecitersModel> reciters;
 
+  GetRecitersSuccess({required this.reciters});
 }
-class GetRecitersFailure extends RecitersState{
+
+class GetRecitersFailure extends RecitersState {
   final String errorMsg;
 
   GetRecitersFailure({required this.errorMsg});
-
 }
