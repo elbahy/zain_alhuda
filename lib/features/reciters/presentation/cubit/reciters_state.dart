@@ -17,3 +17,8 @@ class GetRecitersFailure extends RecitersState {
 
   GetRecitersFailure({required this.errorMsg});
 }
+
+class PlayAudioIcon extends RecitersState {
+  final int index;
+  PlayAudioIcon({required this.index});
+}

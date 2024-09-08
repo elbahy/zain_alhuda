@@ -2474,6 +2474,10 @@ class Assets {
   /// assets/images/page99.png
   static const String assetsImagesPage99 = "assets/images/page99.png";
 
+  /// Assets for assetsImagesPlaying
+  /// assets/images/playing.gif
+  static const String assetsImagesPlaying = "assets/images/playing.gif";
+
   /// Assets for assetsImagesProphetMosque
   /// assets/images/prophet_mosque.svg
   static const String assetsImagesProphetMosque = "assets/images/prophet_mosque.svg";

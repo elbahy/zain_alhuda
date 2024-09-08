@@ -13,7 +13,8 @@ class RecitersCubit extends Cubit<RecitersState> {
 
   final List<RecitersModel> _searchList = <RecitersModel>[];
 
-  AudioPlayer audioPlayer = AudioPlayer();
+  static AudioPlayer audioPlayer = AudioPlayer();
+  String currentPlayingUrl = '';
 
   Future<void> getReciters() async {
     emit(GetRecitersLoading());
@@ -42,22 +43,34 @@ class RecitersCubit extends Cubit<RecitersState> {
     }
   }
 
-  String? currentPlayingUrl;
-
-  void playAudio(String link) async {
+  void playAudio(String link, int index) async {
     // تحقق من حالة المشغل الحالية
     if (audioPlayer.state == PlayerState.playing && currentPlayingUrl == link) {
       // إذا كان الصوت يتم تشغيله وهو نفس الرابط، قم بإيقافه مؤقتًا
       await audioPlayer.pause();
+      emit(PlayAudioIcon(index: 99999999999999));
     } else if (audioPlayer.state == PlayerState.paused &&
         currentPlayingUrl == link) {
       // إذا كان الصوت متوقف مؤقتًا وهو نفس الرابط المطلوب، استأنف التشغيل
       await audioPlayer.resume();
+      emit(PlayAudioIcon(index: index));
     } else {
       // قم بإيقاف الصوت الحالي (إن وجد) ثم تشغيل الصوت الجديد
-      await audioPlayer.stop();
-      currentPlayingUrl = link; // حفظ الرابط الحالي
+      if (audioPlayer.state == PlayerState.playing) {
+        await audioPlayer.stop();
+      }
+      currentPlayingUrl = link;
+      // حفظ الرابط الحالي
       await audioPlayer.play(UrlSource(link));
+      emit(PlayAudioIcon(index: index));
     }
+  }
+
+  static void audioPlayerDispose() {
+    audioPlayer.dispose();
+  }
+
+  void playAudioIcon(int index) {
+    emit(PlayAudioIcon(index: index));
   }
 }

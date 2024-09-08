@@ -15,6 +15,7 @@ import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/quran_view.dart';
 import 'package:zain_alhuda/features/reciters/presentation/cubit/reciters_cubit.dart';
+import 'package:zain_alhuda/features/reciters/presentation/data/reciters_model.dart';
 import 'package:zain_alhuda/features/reciters/presentation/data/reciters_repo.dart';
 import 'package:zain_alhuda/features/reciters/presentation/views/play_quran.dart';
 import 'package:zain_alhuda/features/splash/presentation/views/splash_view.dart';
@@ -61,9 +62,16 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: '/playQuran',
-      builder: (context, state) => PlayQuranView(
-        reciterName: state.extra as String,
-      ),
+      builder: (context, state) {
+        Map<String, dynamic> args = state.extra as Map<String, dynamic>;
+        return BlocProvider(
+          create: (context) => RecitersCubit(RecitersRepo()),
+          child: PlayQuranView(
+            reciterName: args['reciterName'] as String,
+            moshaf: args['moshaf'] as Moshaf,
+          ),
+        );
+      },
     ),
     GoRoute(
       path: '/prayerTimes',
