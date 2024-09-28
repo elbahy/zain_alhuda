@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:zain_alhuda/core/functions/custome_navigate.dart';
-import 'package:zain_alhuda/core/functions/get_reciters_audio_links.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
 import 'package:zain_alhuda/core/widgets/app_bar_space.dart';
