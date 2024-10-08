@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:svg_flutter/svg.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
+import 'package:zain_alhuda/features/home/presentation/widgets/drawer_list_item.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -24,60 +26,37 @@ class DrawerWidget extends StatelessWidget {
               thickness: .5,
             ),
             DrawerListItem(
-              itemName: 'الإنتقال الى العلامة',
+              label: 'الإنتقال الى العلامة',
               onPressed: () {},
-              icon: const Icon(Icons.bookmark_outlined,
+              icon: const Icon(Icons.bookmark_border_rounded,
                   color: AppColors.primaryColor, size: 30),
             ),
             DrawerListItem(
-              itemName: 'دعاء ختم القرآن',
+              label: 'دعاء ختم القرآن',
               onPressed: () {},
-              icon: Image.asset(Assets.assetsImagesOnboardingDoaa, width: 50),
+              icon: SvgPicture.asset(
+                Assets.assetsImagesQuranIcon,
+                width: 35,
+                color: AppColors.primaryColor,
+              ),
+            ),
+            const SizedBox(height: 25),
+            DrawerListItem(
+              isMainItem: false,
+              label: 'شارك التطبيق',
+              onPressed: () {},
+              icon: const Icon(Icons.share_outlined,
+                  color: AppColors.primaryColor, size: 25),
+            ),
+            DrawerListItem(
+              isMainItem: false,
+              label: 'تواصل معنا',
+              onPressed: () {},
+              icon: const Icon(Icons.email_outlined,
+                  color: AppColors.primaryColor, size: 25),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class DrawerListItem extends StatelessWidget {
-  const DrawerListItem({
-    super.key,
-    required this.itemName,
-    required this.onPressed,
-    required this.icon,
-  });
-  final String itemName;
-  final Function() onPressed;
-  final Widget icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      height: 60,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          TextButton.icon(
-            onPressed: onPressed,
-            label: Text(
-              itemName,
-              style: AppStyles.elmisri700Size18,
-            ),
-            icon: icon,
-          ),
-          const Icon(Icons.arrow_forward_ios_outlined,
-              color: AppColors.primaryColor)
-        ],
       ),
     );
   }
