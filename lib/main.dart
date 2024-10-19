@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
 import 'package:zain_alhuda/core/routing/router.dart';
+import 'package:zain_alhuda/core/services/local_notifications_service.dart';
 import 'package:zain_alhuda/core/services/service_locator.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
@@ -12,6 +14,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   await getIt<CacheHelper>().init();
+  await getIt<LocalNotificationsService>().flutterLocalNotificationsInilizer();
+  await getIt<LocalNotificationsService>().showRepeatingNotification(
+    id: 0,
+    title: 'هل صليت اليوم على النبي',
+    body:
+        'إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا (56)',
+    repeateInterval: RepeatInterval.daily,
+  );
 }
 
 class ZainAlhuda extends StatelessWidget {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
-import 'package:zain_alhuda/core/utils/app_styles.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/drawer_list_item.dart';
 
 class DrawerWidget extends StatelessWidget {
