@@ -8,11 +8,16 @@ import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
 import 'package:zain_alhuda/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:timezone/data/latest.dart' as tz;
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   runApp(const ZainAlhuda());
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
+
+  tz.initializeTimeZones();
   await getIt<CacheHelper>().init();
   await getIt<LocalNotificationsService>().flutterLocalNotificationsInilizer();
   await getIt<LocalNotificationsService>().showRepeatingNotification(
@@ -21,6 +26,13 @@ void main() async {
     body:
         'إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا (56)',
     repeateInterval: RepeatInterval.daily,
+  );
+
+  await getIt<LocalNotificationsService>().showBasicNotification(
+    id: 1,
+    title: 'هل صليت على النبي اليوم',
+    body:
+        'إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا (56)',
   );
 }
 

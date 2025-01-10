@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/core/utils/app_styles.dart';
 
@@ -12,6 +13,7 @@ class AzkarContentItem extends StatelessWidget {
   final String zakr;
   final int repeat;
   final int orginalCount;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -27,7 +29,8 @@ class AzkarContentItem extends StatelessWidget {
             border: Border.all(width: 1, color: AppColors.primaryColor),
             // boxShadow: [BoxShadow(color: Colors.grey, spreadRadius: 1, blurRadius: 2, offset: Offset(3, 3))],
           ),
-          child: Text(zakr, style: AppStyles.elmisri700Size18, textAlign: TextAlign.center),
+          child: Text(zakr,
+              style: AppStyles.elmisri700Size18, textAlign: TextAlign.center),
         ),
         Positioned(
           bottom: -20,
@@ -42,7 +45,9 @@ class AzkarContentItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('التكرار', style: AppStyles.elmisri400Size30.copyWith(fontSize: 20), textAlign: TextAlign.center),
+                Text('التكرار',
+                    style: AppStyles.elmisri400Size30.copyWith(fontSize: 20),
+                    textAlign: TextAlign.center),
                 Stack(
                   alignment: AlignmentDirectional.center,
                   children: [
@@ -52,14 +57,30 @@ class AzkarContentItem extends StatelessWidget {
                       color: AppColors.secondColor,
                       backgroundColor: AppColors.thirdColor,
                     ),
-                    Center(child: Text("$repeat", style: AppStyles.elmisri400Size30.copyWith(fontSize: 20))),
+                    Center(
+                        child: Text("$repeat",
+                            style: AppStyles.elmisri400Size30
+                                .copyWith(fontSize: 20))),
                   ],
                 ),
                 const SizedBox(width: 10),
-                Text('|', style: AppStyles.elmisri400Size30.copyWith(fontSize: 20)),
+                Text('|',
+                    style: AppStyles.elmisri400Size30.copyWith(fontSize: 20)),
                 const SizedBox(width: 10),
-                Text('مشاركة', style: AppStyles.elmisri400Size30.copyWith(fontSize: 20)),
-                const Icon(Icons.share, color: Colors.white, size: 30),
+                GestureDetector(
+                  onTap: () {
+                    Share.share(zakr);
+                  },
+                  child: Row(
+                    children: [
+                      Text('مشاركة',
+                          style: AppStyles.elmisri400Size30
+                              .copyWith(fontSize: 20)),
+                      const SizedBox(width: 10),
+                      const Icon(Icons.share, color: Colors.white, size: 30),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

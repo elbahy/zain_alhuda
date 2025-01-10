@@ -6,10 +6,12 @@ import 'package:zain_alhuda/features/azkar/presentation/cubit/azkar_cubit.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_content_view.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_result_view.dart';
 import 'package:zain_alhuda/features/azkar/presentation/views/azkar_view.dart';
+import 'package:zain_alhuda/features/quran/presentation/views/complate_quran_view.dart';
 import 'package:zain_alhuda/features/home/presentation/cubit/home_cubit.dart';
 import 'package:zain_alhuda/features/home/presentation/views/home_view.dart';
 import 'package:zain_alhuda/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/cubit/prayer_times_cubit.dart';
+import 'package:zain_alhuda/features/prayer_times/presentation/views/azan_screen.dart';
 import 'package:zain_alhuda/features/prayer_times/presentation/views/prayer_times_view.dart';
 import 'package:zain_alhuda/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:zain_alhuda/features/quran/presentation/views/surah_view.dart';
@@ -113,6 +115,16 @@ abstract class AppRouter {
     GoRoute(
       path: '/onBoarding',
       builder: (context, state) => const OnBardingView(),
+    ),
+    GoRoute(
+      path: '/azan',
+      builder: (context, state) => AzanScreen(
+        prayerName: state.extra as String,
+      ),
+    ),
+    GoRoute(
+      path: '/complateQuran',
+      builder: (context, state) => const ComplateQuranView(),
     ),
   ]);
 }

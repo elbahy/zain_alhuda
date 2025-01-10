@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
+import 'package:zain_alhuda/core/databases/cache/cache_helper.dart';
+import 'package:zain_alhuda/core/functions/custome_navigate.dart';
+import 'package:zain_alhuda/core/services/service_locator.dart';
 import 'package:zain_alhuda/core/utils/app_assets.dart';
 import 'package:zain_alhuda/core/utils/app_colors.dart';
 import 'package:zain_alhuda/features/home/presentation/widgets/drawer_list_item.dart';
@@ -26,13 +29,18 @@ class DrawerWidget extends StatelessWidget {
             ),
             DrawerListItem(
               label: 'الإنتقال الى العلامة',
-              onPressed: () {},
+              onPressed: () {
+                CustomeNavigate.navigate(context, '/quran',
+                    extra: getIt<CacheHelper>().getData(key: 'bookmarkPage'));
+              },
               icon: const Icon(Icons.bookmark_border_rounded,
                   color: AppColors.primaryColor, size: 30),
             ),
             DrawerListItem(
               label: 'دعاء ختم القرآن',
-              onPressed: () {},
+              onPressed: () {
+                CustomeNavigate.navigate(context, '/complateQuran');
+              },
               icon: SvgPicture.asset(
                 Assets.assetsImagesQuranIcon,
                 width: 35,

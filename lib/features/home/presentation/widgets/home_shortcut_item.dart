@@ -9,12 +9,14 @@ class ShortcutItem extends StatelessWidget {
     required this.bgImage,
     required this.text,
     required this.title,
+    this.bgColor = const [AppColors.primaryColor, AppColors.thirdColor],
   });
 
   final void Function()? onTap;
   final String bgImage;
   final Text text;
   final String title;
+  final List<Color> bgColor;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -31,11 +33,11 @@ class ShortcutItem extends StatelessWidget {
           image: DecorationImage(
             image: AssetImage(bgImage),
             fit: BoxFit.cover,
-            opacity: .3,
+            opacity: .4,
           ),
-          gradient: const LinearGradient(
-            colors: [AppColors.primaryColor, AppColors.thirdColor],
-            end: FractionalOffset(.5, 1.0),
+          gradient: LinearGradient(
+            colors: bgColor,
+            end: const FractionalOffset(.5, 1.0),
           ),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
